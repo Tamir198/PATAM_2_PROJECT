@@ -25,22 +25,24 @@ public class Controller implements Initializable{
     private final static String HOST = "localhost";
     private final static int PORT = 27017;
     @FXML
-    private TextField firstname;
+    private TextField date;
     @FXML
-    private TextField lastname;
+    private TextField starting_time;
     @FXML
     private Label status;
     @FXML
-    private TextField email;
+    private TextField landing_time;
     @FXML
-    public ComboBox<String> gender;
+    public ComboBox<String> currently_flying;
     @FXML
-    private TextField pnumber;
+    private TextField max_height;
+    @FXML
+    private TextField max_speed;
     @FXML
     private Button att;
 
 //  create an observable list to hold the content of the combobox
-    ObservableList<String> list  = FXCollections.observableArrayList("Male", "Female");
+    ObservableList<String> list  = FXCollections.observableArrayList("true", "false");
 
 //  create a primary stage object
     Stage primaryStage = new Stage();
@@ -48,7 +50,7 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //      set the items of the combobox
-        gender.setItems(list);
+        currently_flying.setItems(list);
     }
 
     public void getFieldValues(ActionEvent event){
@@ -63,11 +65,11 @@ public class Controller implements Initializable{
             MongoCollection coll = mongoDatabase.getCollection("Attendance");
 
 //          get the values of the fields
-            Document doc = new Document("firstname", firstname.getText())
-                    .append("lastname", lastname.getText())
-                    .append("email", email.getText())
-                    .append("gender", gender.getValue())
-                    .append("phone_number", pnumber.getText());
+            Document doc = new Document("date", date.getText())
+                    .append("lastname", starting_time.getText())
+                    .append("email", landing_time.getText())
+                    .append("gender", currently_flying.getValue())
+                    .append("phone_number", max_speed.getText());
 
 //          save the document
             coll.insertOne(doc);
@@ -76,11 +78,11 @@ public class Controller implements Initializable{
             status.setText("Saved Successfully!!!");
 
 //          set the fields to null or empty
-            firstname.setText("");
-            lastname.setText("");
-            email.setText("");
-            gender.setValue(null);
-            pnumber.setText("");
+            date.setText("");
+            starting_time.setText("");
+            landing_time.setText("");
+            currently_flying.setValue(null);
+            max_speed.setText("");
         }
         catch (Exception e){
             System.out.println(e.getClass().getName() + ": " + e.getMessage());

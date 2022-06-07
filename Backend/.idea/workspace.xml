@@ -50,7 +50,7 @@
       <recent name="C:\Users\Almog\OneDrive\Documents\GitHub\Backend\src\sample" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Interpeter">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Interpeter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Interpeter.Interpeter" />
       <module name="Attendance_javafx" />
@@ -79,8 +79,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Interpeter" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Interpeter" />
       </list>
     </recent_temporary>
   </component>
@@ -94,7 +94,7 @@
       <updated>1652871778867</updated>
       <workItem from="1652958920982" duration="5865000" />
       <workItem from="1654009631041" duration="5021000" />
-      <workItem from="1654591989421" duration="8138000" />
+      <workItem from="1654591989421" duration="12490000" />
     </task>
     <servers />
   </component>

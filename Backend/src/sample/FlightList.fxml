@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="attendance" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FlightList">
+<AnchorPane fx:id="Flight" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FlightList">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="747.0">
          <children>
@@ -21,17 +21,19 @@
             </Label>
             <TableView fx:id="table" prefHeight="293.0" prefWidth="702.0">
               <columns>
-                <TableColumn fx:id="id" prefWidth="40.0" text="Id" />
-                <TableColumn fx:id="firstname" editable="true" minWidth="50.0" prefWidth="100.0" text="Flight Index" />
-                  <TableColumn fx:id="lastname" editable="true" prefWidth="100.0" text="Flight Date" />
-                  <TableColumn fx:id="gender" prefWidth="144.800048828125" text="Start time" />
-                  <TableColumn fx:id="email" editable="true" prefWidth="115.199951171875" text="Landing time" />
-                  <TableColumn fx:id="phone_number" editable="true" prefWidth="200.0" text="Flight CSV" />
+                <TableColumn fx:id="id" prefWidth="40.0" text="Flight Index" />
+                <TableColumn fx:id="currently_flying" editable="true" minWidth="50.0" prefWidth="100.0" text="Airborne" />
+                  <TableColumn fx:id="starting_time" editable="true" prefWidth="100.0" text="Start time" />
+                  <TableColumn fx:id="landing_time" prefWidth="144.800048828125" text="Land time" />
+                  <TableColumn fx:id="date" editable="true" prefWidth="200.0" text="Flight Date" />
+                  <TableColumn fx:id="max_height" editable="true" prefWidth="115.199951171875" text="Max height" />
+                  <TableColumn fx:id="max_speed" editable="true" prefWidth="200.0" text="Max speed" />
+
               </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                   <Button fx:id="addAttend" mnemonicParsing="false" onAction="#addAttendance" text="Add Flight" textAlignment="CENTER">
+                   <Button fx:id="addFlight" mnemonicParsing="false" onAction="#addFlight" text="Add Flight" textAlignment="CENTER">
                        <font>
                            <Font size="18.0" />
                        </font>
@@ -47,7 +49,7 @@
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                        </padding>
                    </Button>
-                   <Button mnemonicParsing="false" onAction="#deleteAttendance" text="Delete Flight" textAlignment="CENTER">
+                   <Button mnemonicParsing="false" onAction="#deleteFlight" text="Delete Flight" textAlignment="CENTER">
                        <font>
                            <Font size="18.0" />
                        </font>

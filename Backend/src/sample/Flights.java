@@ -63,4 +63,7 @@ public class Flights {
         max_speed.set(phoneNumber);
     }
 
+    public void setLanding_time(String landing) {
+        Landing_Time.set(landing);
+    }
 }
