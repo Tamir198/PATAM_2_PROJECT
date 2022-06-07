@@ -27,16 +27,15 @@ import static com.mongodb.client.model.Filters.eq;
 /**
  * Created by joaquinto on 9/28/17.
  */
-public class AttendanceList implements Initializable{
+public class FlightList implements Initializable{
     private final static String HOST = "localhost";
     private final static int PORT = 27017;
-    private String firstna;
-    private String lastna;
-    private String genda;
-    private String email_;
-    private String fone_no;
-    private String fname;
-    private String lname;
+    private String is_flying;
+    private String starting;
+    private String landing;
+    private String height;
+    private String speed;
+    private String date;
     private String _email;
     private String _gender;
     private String pnumber;
@@ -45,19 +44,19 @@ public class AttendanceList implements Initializable{
     @FXML
     private Label status;
     @FXML
-    private TableView<Attendees> table;
+    private TableView<Flights> table;
     @FXML
-    private TableColumn<Attendees, Integer> id;
+    private TableColumn<Flights, Integer> id;
     @FXML
-    private TableColumn<Attendees, String> firstname;
+    private TableColumn<Flights, String> firstname;
     @FXML
-    private TableColumn<Attendees, String> lastname;
+    private TableColumn<Flights, String> lastname;
     @FXML
-    private TableColumn<Attendees, String> email;
+    private TableColumn<Flights, String> email;
     @FXML
-    private TableColumn<Attendees, String> gender;
+    private TableColumn<Flights, String> gender;
     @FXML
-    private TableColumn<Attendees, String> phone_number;
+    private TableColumn<Flights, String> phone_number;
     @FXML
     private Button addAttend;
 
@@ -65,7 +64,7 @@ public class AttendanceList implements Initializable{
     Stage primaryStage = new Stage();
 
 //  create an observable list to hold the Attendees object in the Attendees class
-    public ObservableList<Attendees> list;
+    public ObservableList<Flights> list;
 
     public List attend = new ArrayList();
 
@@ -90,13 +89,13 @@ public class AttendanceList implements Initializable{
                 pos = i +1;
 
                 Document doc = cursor.next();
-                fname = doc.getString("firstname");
+                date = doc.getString("firstname");
                 lname = doc.getString("lastname");
                 _email = doc.getString("email");
                 _gender = doc.getString("gender");
                 pnumber = doc.getString("phone_number");
 
-                attend.add(new Attendees(pos, fname, lname, _email, _gender, pnumber ));
+                attend.add(new Flights(pos,is_flying, date,starting, landing, height,speed));
             }
             list = FXCollections.observableArrayList(attend);
 
@@ -127,25 +126,25 @@ public class AttendanceList implements Initializable{
     }
 
     public void editAttendanceList() {
-        Attendees selectedItem = table.getSelectionModel().getSelectedItem();
+        Flights selectedItem = table.getSelectionModel().getSelectedItem();
         if (selectedItem == null){
 //          display an error message if no row was selected
             status.setText("Please select a row and perform this action again");
         }
         else{
-            firstna = selectedItem.getFirstname();
-            lastna = selectedItem.getLastname();
-            genda = selectedItem.getGender();
-            email_ = selectedItem.getEmail();
-            fone_no = selectedItem.getPhone_number();
+            is_flying = selectedItem.getCurrently_Flying();
+            starting = selectedItem.getStarting_Time();
+            landing = selectedItem.getDate();
+            height = selectedItem.getLanding_Time();
+            speed = selectedItem.getMax_height();
 
 //          here i am using the email as my primary key to find each document to update it in the database
-            coll.updateOne(eq("email", email_), new Document("$set",
-                    new Document("firstname",firstna )
-                            .append("lastname", lastna)
-                            .append("gender", genda)
-                            .append("email", email_)
-                            .append("phone_number", fone_no)));
+            coll.updateOne(eq("email", height), new Document("$set",
+                    new Document("firstname", is_flying)
+                            .append("lastname", starting)
+                            .append("gender", landing)
+                            .append("email", height)
+                            .append("phone_number", speed)));
 
 //          call the rePopulateTable method
             rePopulateTable();
@@ -162,14 +161,14 @@ public class AttendanceList implements Initializable{
 
     public void deleteAttendance(){
 //      get the selected row
-        Attendees selectedItem = table.getSelectionModel().getSelectedItem();
+        Flights selectedItem = table.getSelectionModel().getSelectedItem();
         if (selectedItem == null){
 //          display an error message
             status.setText("Please select a row and perform this action again");
         }
         else{
 //          get the value of the selected email column
-            String email_ = selectedItem.getEmail();
+            String email_ = selectedItem.getLanding_Time();
 
 //          here i am using the email as my primary key to find each document to delete from the database
             coll.deleteOne(eq("email", email_));
@@ -193,11 +192,11 @@ public class AttendanceList implements Initializable{
         firstname.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
-        firstname.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Attendees, String>>() {
+        firstname.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<Attendees, String> event) {
+            public void handle(TableColumn.CellEditEvent<Flights, String> event) {
 
-                ((Attendees)event.getTableView().getItems().get(event.getTablePosition().getRow()))
+                ((Flights)event.getTableView().getItems().get(event.getTablePosition().getRow()))
                         .setFirstname(event.getNewValue());
 
             }
@@ -207,11 +206,11 @@ public class AttendanceList implements Initializable{
         lastname.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
-        lastname.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Attendees, String>>() {
+        lastname.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<Attendees, String> event) {
-                ((Attendees)event.getTableView().getItems().get(event.getTablePosition().getRow()))
-                        .setLastname(event.getNewValue());
+            public void handle(TableColumn.CellEditEvent<Flights, String> event) {
+                ((Flights)event.getTableView().getItems().get(event.getTablePosition().getRow()))
+                        .setStarting_Time(event.getNewValue());
             }
         });
 
@@ -219,21 +218,21 @@ public class AttendanceList implements Initializable{
         phone_number.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
-        phone_number.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Attendees, String>>() {
+        phone_number.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
-            public void handle(TableColumn.CellEditEvent<Attendees, String> event) {
-                ((Attendees)event.getTableView().getItems().get(event.getTablePosition().getRow()))
+            public void handle(TableColumn.CellEditEvent<Flights, String> event) {
+                ((Flights)event.getTableView().getItems().get(event.getTablePosition().getRow()))
                         .setPhoneNumber(event.getNewValue());
             }
         });
 
 //      set the values of each columns to display on the table
-        id.setCellValueFactory(new PropertyValueFactory<Attendees, Integer>("id"));
-        firstname.setCellValueFactory( new PropertyValueFactory<Attendees, String>("firstname"));
-        lastname.setCellValueFactory( new PropertyValueFactory<Attendees, String>("lastname"));
-        email.setCellValueFactory( new PropertyValueFactory<Attendees, String>("email"));
-        gender.setCellValueFactory( new PropertyValueFactory<Attendees, String>("gender"));
-        phone_number.setCellValueFactory( new PropertyValueFactory<Attendees, String>("phone_number"));
+        id.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("id"));
+        firstname.setCellValueFactory( new PropertyValueFactory<Flights, String>("firstname"));
+        lastname.setCellValueFactory( new PropertyValueFactory<Flights, String>("lastname"));
+        email.setCellValueFactory( new PropertyValueFactory<Flights, String>("email"));
+        gender.setCellValueFactory( new PropertyValueFactory<Flights, String>("gender"));
+        phone_number.setCellValueFactory( new PropertyValueFactory<Flights, String>("phone_number"));
         table.setItems(list);
     }
 
@@ -249,13 +248,13 @@ public class AttendanceList implements Initializable{
                 pos = i +1;
 
                 Document doc = cursor.next();
-                fname = doc.getString("firstname");
+                date = doc.getString("firstname");
                 lname = doc.getString("lastname");
                 _email = doc.getString("email");
                 _gender = doc.getString("gender");
                 pnumber = doc.getString("phone_number");
 
-                attend.add(new Attendees(pos, fname, lname, _email, _gender, pnumber ));
+                attend.add(new Flights(pos, date, lname, _email, _gender, pnumber ));
             }
             list = FXCollections.observableArrayList(attend);
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="attendance" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AttendanceList">
+<AnchorPane fx:id="attendance" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FlightList">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="747.0">
          <children>

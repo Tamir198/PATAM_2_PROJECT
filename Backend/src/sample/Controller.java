@@ -97,7 +97,7 @@ public class Controller implements Initializable{
         stage.close();
 
 //      load the attendance list window
-        Parent root = FXMLLoader.load(getClass().getResource("AttendanceList.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FlightList.fxml"));
         primaryStage.setTitle("Attendance List");
         primaryStage.setScene(new Scene(root, 747, 400));
         primaryStage.show();
