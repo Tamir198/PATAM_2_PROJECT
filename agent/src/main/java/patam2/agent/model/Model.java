@@ -8,13 +8,13 @@ import java.util.Observable;
 
 public class Model extends Observable {
 
-    HashMap<String, String> properties;
+    HashMap<String, String> SymbolTable;
     Socket fg;
 
     PrintWriter out2fg;
 
     public Model(String propertiesFileName){
-        properties = new HashMap<>();
+        SymbolTable = new HashMap<>();
         try (BufferedReader in = new BufferedReader(new FileReader(propertiesFileName))){
             String line;
             while ((line=in.readLine()) != null){
@@ -23,7 +23,7 @@ public class Model extends Observable {
                 String splitProperties[] = line.split(",");
 
                 // push into the map
-                properties.put(splitProperties[0],splitProperties[1]);
+                SymbolTable.put(splitProperties[0],splitProperties[1]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -32,9 +32,9 @@ public class Model extends Observable {
         }
 
         // connecting to the flight gear as a client socket
-        int port = Integer.parseInt(properties.get("port"));
+        int port = Integer.parseInt(SymbolTable.get("port"));
         try {
-            fg = new Socket(properties.get("ip"),port);
+            fg = new Socket(SymbolTable.get("ip"),port);
             out2fg = new PrintWriter(fg.getOutputStream());
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -45,31 +45,31 @@ public class Model extends Observable {
 
     public void setAileron(double x){
         // we'll get the command: set /controls/flight/aileron, and write it to the socket's outPutStream with the given x
-        String command = properties.get("aileron");
+        String command = SymbolTable.get("aileron");
         out2fg.println(command+" "+x);
         out2fg.flush();
     }
 
     public void setElevators(double x){
-        String command = properties.get("elevators");
+        String command = SymbolTable.get("elevators");
         out2fg.println(command+" "+x);
         out2fg.flush();
     }
 
     public void setRudder(double x){
-        String command = properties.get("rudder");
+        String command = SymbolTable.get("rudder");
         out2fg.println(command+" "+x);
         out2fg.flush();
     }
 
     public void setThrottle(double x){
-        String command = properties.get("throttle");
+        String command = SymbolTable.get("throttle");
         out2fg.println(command+" "+x);
         out2fg.flush();
     }
 
     public void setBrakes(double x){
-        String command = properties.get("brakes");
+        String command = SymbolTable.get("brakes");
         out2fg.println(command+" "+x);
         out2fg.flush();
     }
