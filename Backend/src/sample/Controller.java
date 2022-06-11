@@ -66,9 +66,9 @@ public class Controller implements Initializable{
 
 //          get the values of the fields
             Document doc = new Document("date", date.getText())
-                    .append("starting_time", starting_time.getText())
-                    .append("landing_time", landing_time.getText())
-                    .append("currently_flying", currently_flying.getValue())
+                    .append("Starting_Time", starting_time.getText())
+                    .append("Landing_Time", landing_time.getText())
+                    .append("Currently_Flying", currently_flying.getValue())
                     .append("max_speed", max_speed.getText())
                     .append("max_height", max_height.getText());
 
@@ -84,6 +84,7 @@ public class Controller implements Initializable{
             starting_time.setText("");
             landing_time.setText("");
             currently_flying.setValue(null);
+            max_height.setText("");
             max_speed.setText("");
         }
         catch (Exception e){

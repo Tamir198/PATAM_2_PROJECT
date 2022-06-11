@@ -89,10 +89,10 @@ public class FlightList implements Initializable {
                 pos = i + 1;
 
                 Document doc = cursor.next();
-                is_flying = doc.getString("currently_flying");
-                starting = doc.getString("starting_time");
-                landing = doc.getString("landing_time");
                 date_ = doc.getString("date");
+                starting = doc.getString("Starting_Time");
+                landing = doc.getString("Landing_Time");
+                is_flying = doc.getString("Currently_Flying");
                 height = doc.getString("max_height");
                 speed = doc.getString("max_speed");
 
@@ -184,21 +184,20 @@ public class FlightList implements Initializable {
 //      this makes the table editable
         table.setEditable(true);
 
-//      make firstname column editable with a text-field
-        currently_flying.setCellFactory(TextFieldTableCell.forTableColumn());
+        date.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
-        currently_flying.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
+        date.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
 
                 ((Flights) event.getTableView().getItems().get(event.getTablePosition().getRow()))
-                        .setCurrently_Flying(event.getNewValue());
+                        .setDate(event.getNewValue());
 
             }
         });
 
-//      make lastname column editable with a text-field
+        //      make lastname column editable with a text-field
         starting_time.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
@@ -218,9 +217,24 @@ public class FlightList implements Initializable {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
                 ((Flights) event.getTableView().getItems().get(event.getTablePosition().getRow()))
-                        .setLanding_time(event.getNewValue());
+                        .setLanding_Time(event.getNewValue());
             }
         });
+
+//      make firstname column editable with a text-field
+        currently_flying.setCellFactory(TextFieldTableCell.forTableColumn());
+
+//      gets the new value and calls the setFirstname method
+        currently_flying.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Flights, String> event) {
+
+                ((Flights) event.getTableView().getItems().get(event.getTablePosition().getRow()))
+                        .setCurrently_Flying(event.getNewValue());
+
+            }
+        });
+
 //      make phone number column editable with a text-field
         max_height.setCellFactory(TextFieldTableCell.forTableColumn());
 //      gets the new value and calls the setFirstname method
@@ -242,10 +256,10 @@ public class FlightList implements Initializable {
         });
 //      set the values of each column to display on the table
         id.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("id"));
-        currently_flying.setCellValueFactory(new PropertyValueFactory<Flights, String>("currently_flying"));
-        starting_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("starting_time"));
-        landing_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("landing_time"));
         date.setCellValueFactory(new PropertyValueFactory<Flights, String>("date"));
+        starting_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("Starting_Time"));
+        landing_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("Landing_Time"));
+        currently_flying.setCellValueFactory(new PropertyValueFactory<Flights, String>("Currently_Flying"));
         max_height.setCellValueFactory(new PropertyValueFactory<Flights, String>("max_height"));
         max_speed.setCellValueFactory(new PropertyValueFactory<Flights, String>("max_speed"));
         table.setItems(list);
@@ -263,10 +277,10 @@ public class FlightList implements Initializable {
                 pos = i + 1;
 
                 Document doc = cursor.next();
-                is_flying = doc.getString("currently_flying");
-                starting = doc.getString("starting_time");
-                landing = doc.getString("landing_time");
                 date_ = doc.getString("date");
+                starting = doc.getString("Starting_Time");
+                landing = doc.getString("Landing_Time");
+                is_flying = doc.getString("Currently_Flying");
                 height = doc.getString("max_height");
                 speed = doc.getString("max_speed");
 
