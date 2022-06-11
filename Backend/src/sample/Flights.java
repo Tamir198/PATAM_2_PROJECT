@@ -48,19 +48,19 @@ public class Flights {
     }
     public String getMax_Speed(){return max_speed.get();}
 
-    public void setCurrently_Flying(String fname) {
-        Currently_Flying.set(fname);
+    public void setCurrently_Flying(String currently_Flying) {
+        Currently_Flying.set(currently_Flying);
     }
 
-    public void setStarting_Time(String lname) {
-        Starting_Time.set(lname);
+    public void setStarting_Time(String starting_Time) {
+        Starting_Time.set(starting_Time);
     }
 
-    public void setMax_height(String phoneNumber) {
-        max_height.set(phoneNumber);
+    public void setMax_height(String height) {
+        max_height.set(height);
     }
-    public void setMax_speed(String phoneNumber) {
-        max_speed.set(phoneNumber);
+    public void setMax_speed(String max_speed) {
+        this.max_speed.set(max_speed);
     }
 
     public void setLanding_time(String landing) {

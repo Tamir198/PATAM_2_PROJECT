@@ -24,9 +24,7 @@ import java.util.ResourceBundle;
 
 import static com.mongodb.client.model.Filters.eq;
 
-/**
- * Created by joaquinto on 9/28/17.
- */
+
 public class FlightList implements Initializable {
     private final static String HOST = "localhost";
     private final static int PORT = 27017;
@@ -36,9 +34,9 @@ public class FlightList implements Initializable {
     private String height;
     private String speed;
     private String date_;
-    private String _email;
-    private String _gender;
-    private String pnumber;
+//    private String _email;
+//    private String _gender;
+//    private String pnumber;
     private int pos;
 
     @FXML
@@ -78,7 +76,7 @@ public class FlightList implements Initializable {
     MongoDatabase mongoDatabase = mongoClient.getDatabase("Confab");
 
     //  create a collection
-    MongoCollection coll = mongoDatabase.getCollection("Attendance");
+    MongoCollection coll = mongoDatabase.getCollection("FlightList");
     //  call the find all method
     MongoCursor<Document> cursor = coll.find().iterator();
 
@@ -111,7 +109,6 @@ public class FlightList implements Initializable {
 //      call the setTable method
         setTable();
     }
-
 
     public void addFlight() throws Exception {
 //      get the current window
@@ -159,7 +156,6 @@ public class FlightList implements Initializable {
 //
 //    }
 
-
     public void deleteFlight() {
 //      get the selected row
         Flights selectedItem = table.getSelectionModel().getSelectedItem();
@@ -168,7 +164,7 @@ public class FlightList implements Initializable {
             status.setText("Please select a row and perform this action again");
         } else {
 //          get the value of the selected email column
-            String email_ = selectedItem.getLanding_Time();
+            String landing_time_ = selectedItem.getLanding_Time();
 
 //          here i am using the email as my primary key to find each document to delete from the database
             coll.deleteOne(eq("date", date_));
@@ -188,7 +184,7 @@ public class FlightList implements Initializable {
 //      this makes the table editable
         table.setEditable(true);
 
-//      make firstname column editable with a textfield
+//      make firstname column editable with a text-field
         currently_flying.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
@@ -202,7 +198,7 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make lastname column editable with a textfield
+//      make lastname column editable with a text-field
         starting_time.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
@@ -214,7 +210,7 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make phone number column editable with a textfield
+//      make phone number column editable with a text-field
         landing_time.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFirstname method
@@ -225,7 +221,7 @@ public class FlightList implements Initializable {
                         .setLanding_time(event.getNewValue());
             }
         });
-        //      make phone number column editable with a textfield
+//      make phone number column editable with a text-field
         max_height.setCellFactory(TextFieldTableCell.forTableColumn());
 //      gets the new value and calls the setFirstname method
         max_height.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
@@ -244,7 +240,7 @@ public class FlightList implements Initializable {
                         .setMax_speed(event.getNewValue());
             }
         });
-//      set the values of each columns to display on the table
+//      set the values of each column to display on the table
         id.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("id"));
         currently_flying.setCellValueFactory(new PropertyValueFactory<Flights, String>("currently_flying"));
         starting_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("starting_time"));
@@ -261,7 +257,7 @@ public class FlightList implements Initializable {
 
 //      clears the flight list so that the previous data won't be displayed together with this new ones on the table
         flight.clear();
-        try{
+        try {
 //          loop through the database and then populate the list
             for (int i = 0; i < coll.count(); i++) {
                 pos = i + 1;

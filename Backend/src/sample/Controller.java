@@ -62,20 +62,22 @@ public class Controller implements Initializable{
             MongoDatabase mongoDatabase = mongoClient.getDatabase("Confab");
 
 //          create a collection
-            MongoCollection coll = mongoDatabase.getCollection("Attendance");
+            MongoCollection coll = mongoDatabase.getCollection("FlightList");
 
 //          get the values of the fields
             Document doc = new Document("date", date.getText())
-                    .append("lastname", starting_time.getText())
-                    .append("email", landing_time.getText())
-                    .append("gender", currently_flying.getValue())
-                    .append("phone_number", max_speed.getText());
+                    .append("starting_time", starting_time.getText())
+                    .append("landing_time", landing_time.getText())
+                    .append("currently_flying", currently_flying.getValue())
+                    .append("max_speed", max_speed.getText())
+                    .append("max_height", max_height.getText());
+
 
 //          save the document
             coll.insertOne(doc);
 
 //          display a success message
-            status.setText("Saved Successfully!!!");
+            status.setText("nishmar sababaaaaa!");
 
 //          set the fields to null or empty
             date.setText("");
@@ -87,11 +89,11 @@ public class Controller implements Initializable{
         catch (Exception e){
             System.out.println(e.getClass().getName() + ": " + e.getMessage());
 //          display the error message
-            status.setText("Failed to save");
+            status.setText("lo nishmar cosemec");
         }
     }
 
-    public void goToAttendanceList() throws Exception{
+    public void goToFlightList() throws Exception{
 //      get the current window
         Stage stage = (Stage)att.getScene().getWindow();
 
@@ -100,7 +102,7 @@ public class Controller implements Initializable{
 
 //      load the attendance list window
         Parent root = FXMLLoader.load(getClass().getResource("FlightList.fxml"));
-        primaryStage.setTitle("Attendance List");
+        primaryStage.setTitle("Flight List");
         primaryStage.setScene(new Scene(root, 747, 400));
         primaryStage.show();
 

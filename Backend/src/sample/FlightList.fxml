@@ -19,15 +19,15 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="table" prefHeight="293.0" prefWidth="702.0">
+            <TableView fx:id="table" prefHeight="262.0" prefWidth="637.0">
               <columns>
-                <TableColumn fx:id="id" prefWidth="40.0" text="Flight Index" />
-                <TableColumn fx:id="currently_flying" editable="true" minWidth="50.0" prefWidth="100.0" text="Airborne" />
-                  <TableColumn fx:id="starting_time" editable="true" prefWidth="100.0" text="Start time" />
-                  <TableColumn fx:id="landing_time" prefWidth="144.800048828125" text="Land time" />
-                  <TableColumn fx:id="date" editable="true" prefWidth="200.0" text="Flight Date" />
-                  <TableColumn fx:id="max_height" editable="true" prefWidth="115.199951171875" text="Max height" />
-                  <TableColumn fx:id="max_speed" editable="true" prefWidth="200.0" text="Max speed" />
+                <TableColumn fx:id="id" prefWidth="89.0" text="Flight Index" />
+                <TableColumn fx:id="currently_flying" editable="true" minWidth="50.0" prefWidth="95.0" text="Airborne" />
+                  <TableColumn fx:id="starting_time" editable="true" prefWidth="98.0" text="Start time" />
+                  <TableColumn fx:id="landing_time" prefWidth="103.0" text="Land time" />
+                  <TableColumn fx:id="date" editable="true" prefWidth="113.0" text="Flight Date" />
+                  <TableColumn fx:id="max_height" editable="true" prefWidth="121.0" text="Max height" />
+                  <TableColumn fx:id="max_speed" editable="true" prefWidth="127.0" text="Max speed" />
 
               </columns>
             </TableView>
@@ -41,14 +41,14 @@
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                        </padding>
                    </Button>
-                   <Button mnemonicParsing="false" onAction="#editAttendanceList" text="Update Flight" textAlignment="CENTER">
-                       <font>
-                           <Font size="18.0" />
-                       </font>
-                       <padding>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                       </padding>
-                   </Button>
+<!--                   <Button mnemonicParsing="false" onAction="#editAttendanceList" text="Update Flight" textAlignment="CENTER">-->
+<!--                       <font>-->
+<!--                           <Font size="18.0" />-->
+<!--                       </font>-->
+<!--                       <padding>-->
+<!--                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+<!--                       </padding>-->
+<!--                   </Button>-->
                    <Button mnemonicParsing="false" onAction="#deleteFlight" text="Delete Flight" textAlignment="CENTER">
                        <font>
                            <Font size="18.0" />

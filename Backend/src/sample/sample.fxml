@@ -8,25 +8,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="271.0" prefWidth="288.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane prefHeight="353.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <TextField fx:id="firstname" layoutX="59.0" layoutY="45.0" promptText="Firstname">
+      <TextField fx:id="date" alignment="CENTER" layoutX="60.0" layoutY="41.0" promptText="Date">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="lastname" layoutX="59.0" layoutY="78.0" promptText="Lastname">
+      <TextField fx:id="starting_time" alignment="CENTER" layoutX="59.0" layoutY="78.0" promptText="Starting Time">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="email" layoutX="59.0" layoutY="110.0" promptText="Emal">
+      <TextField fx:id="landing_time" alignment="CENTER" layoutX="60.0" layoutY="115.0" promptText="Landing Time">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="gender" layoutX="59.0" layoutY="142.0" prefWidth="150.0" promptText="Gender" />
-      <Button alignment="CENTER" layoutX="40.0" layoutY="221.0" mnemonicParsing="false" onAction="#getFieldValues" text="Register" textAlignment="CENTER">
+      <ComboBox fx:id="currently_flying" layoutX="60.0" layoutY="154.0" prefHeight="25.0" prefWidth="173.0" promptText="Currently Flying" />
+      <Button alignment="CENTER" layoutX="24.0" layoutY="284.0" mnemonicParsing="false" onAction="#getFieldValues" prefHeight="40.0" prefWidth="121.0" text="Add Flight" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -34,7 +34,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Button>
-      <TextField fx:id="pnumber" layoutX="59.0" layoutY="173.0" promptText="Phone Number">
+      <TextField fx:id="max_speed" alignment="CENTER" layoutX="59.0" layoutY="186.0" promptText="Max Speed">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="max_height" alignment="CENTER" layoutX="60.0" layoutY="223.0" promptText="Max Height">
          <font>
             <Font size="14.0" />
          </font>
@@ -44,14 +49,16 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="att" alignment="CENTER" layoutX="131.0" layoutY="221.0" mnemonicParsing="false" onAction="#goToAttendanceList" text="Attendance List" textAlignment="CENTER">
-         <font>
+      <Button fx:id="att" alignment="CENTER" layoutX="148.0" layoutY="284.0" mnemonicParsing="false" onAction="#goToFlightList" prefHeight="40.0" prefWidth="121.0" text="Flight List" textAlignment="CENTER">
+
+                     <font>
             <Font size="14.0" />
          </font>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Button>
+      
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
