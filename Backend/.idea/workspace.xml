@@ -20,6 +20,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="29Kpl6WTUs61ZYMXeTlc0fXZFwD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -34,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/TimeSeries" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -43,6 +46,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Almog\OneDrive\Documents\GitHub\Backend\src\TimeSeries" />
       <recent name="C:\Users\user\Documents\GitHub\CRUD-operation-in-java-using-mongodb-and-javafx" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -109,7 +113,7 @@
       <workItem from="1652958920982" duration="5865000" />
       <workItem from="1654009631041" duration="5021000" />
       <workItem from="1654591989421" duration="13974000" />
-      <workItem from="1654936119578" duration="11235000" />
+      <workItem from="1654936119578" duration="14973000" />
     </task>
     <servers />
   </component>
@@ -126,7 +130,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
