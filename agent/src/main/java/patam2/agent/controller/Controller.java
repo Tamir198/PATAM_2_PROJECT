@@ -1,7 +1,7 @@
 package patam2.agent.controller;
 
 import patam2.agent.model.Model;
-import patam2.agent.view.WindowController;
+import patam2.agent.WindowController;
 
 import java.io.File;
 import java.util.Observable;
@@ -14,6 +14,10 @@ public class Controller implements Observer {
     public float to;
     public float maxAltitude;
     public float maxSpeed;
+    public float aileron;
+    public float elevator;
+    public float rudder;
+    public float throttle;
 
     Model model;
     WindowController windowController;
@@ -44,7 +48,9 @@ public class Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        // TODO: update
-        //model.setAileron(windowController.getAileron);
+        model.setAileron(windowController.getAileron());
+        model.setElevators(windowController.getElevator());
+        model.setThrottle(windowController.getThrottle());
+        model.setRudder(windowController.getRudder());
     }
 }

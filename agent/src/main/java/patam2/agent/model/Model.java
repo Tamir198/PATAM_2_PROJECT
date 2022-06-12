@@ -10,7 +10,7 @@ public class Model extends Observable {
 
     HashMap<String, String> SymbolTable;
     Socket fg;
-
+    // TODO TimeSeries
     PrintWriter out2fg;
 
     public Model(String propertiesFileName){
@@ -74,9 +74,17 @@ public class Model extends Observable {
         out2fg.flush();
     }
 
+    public void setSymbolTable(String XMLFile){
+
+    }
     /*public TimeSeries getFlight(){
         return null;
-    }*/
+    }
+
+    public void setTimeSeries(){
+
+    }
+    */
 
     @Override
     public void finalize(){

@@ -64,7 +64,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>patam2.agent/patam2.agent.HelloApplication</mainClass>
+                            <mainClass>patam2.agent/patam2.agent.WindowApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
