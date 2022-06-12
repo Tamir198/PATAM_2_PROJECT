@@ -17,11 +17,14 @@ public class WindowApplication extends Application {
             FXMLLoader fxml = new FXMLLoader();
             BorderPane root = fxml.load(getClass().getResource("Window.fxml").openStream());
             //the view class(WindowController) doesn't know the Model and the Controller, because of the Observer design pattern
-            WindowController wc = fxml.getController(); // view
-            wc.paint();
+            WindowController winC = fxml.getController(); // view
+            winC.paint();
+            winC.slideRudder.setValue(0);
+            winC.rudder = 0;
+
             // the model doesn't know the controller and the view
             Model m = new Model("src/main/resources/properties.txt"); // model
-            Controller c = new Controller(m, wc); // controller
+            Controller c = new Controller(m, winC); // controller
 
             Scene scene = new Scene(root, 300, 300);
 //            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

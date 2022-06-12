@@ -19,7 +19,6 @@ public class WindowController extends Observable {
     Slider slideRudder;
     // TODO manual start, breaks
 
-
     // mouse clicked or released
     boolean mousePushed;
     // to show mouse move on joystick
@@ -64,6 +63,7 @@ public class WindowController extends Observable {
         // get the middle of the canvas (x,y values of the canvas' center)
         mx = joystick.getWidth()/2;
         my = joystick.getHeight()/2;
+
         // clear the last drawing everytime "paint()" is called, and then re-paint
         gc.clearRect(0,0, joystick.getWidth(), joystick.getHeight());
 
@@ -125,7 +125,12 @@ public class WindowController extends Observable {
     public void rudderMove(MouseEvent mouseEvent){
         System.out.println(slideRudder.getValue());
         // TODO fix rudder values by adding power
-        rudder = (slideRudder.getValue() - 50 ) / 50;
+        double rudderValue = (slideRudder.getValue() - 50 ) / 50;
+        if(0 < rudderValue && rudderValue < 0.1){
+            rudder = 0.05;
+        } else {
+            rudder = (slideRudder.getValue() - 50) / 50;
+        }
         setChanged();
         notifyObservers();
         System.out.println("rudder: " + rudder);
