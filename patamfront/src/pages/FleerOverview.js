@@ -3,7 +3,7 @@ import React from 'react'
 
 import { getMilesTraveledData, getAverageYearlyDistance } from '../DB/db';
 
-import PieGraph from '../componenets/Graphs/PieGraph';
+import PieGraph from '../componenets/PieChart/PieGraph';
 import BarChart from '../componenets/BarChart/barChart';
 
 
