@@ -95,7 +95,7 @@ export const getLineGraphChangesOverTime = () => {
    labels: fleetData.map(item => item.name),
    datasets: [
      {
-       label: '',
+       label: 'Anomaly Detection',
        data: fleetData.map((item) => item.totalSize),
        borderColor: 'rgb(255, 99, 132)',
        backgroundColor: 'rgba(255, 99, 132, 0.5)',
