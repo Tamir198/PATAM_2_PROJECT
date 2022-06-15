@@ -1,0 +1,9 @@
+.pie__chart,
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+.pie__chart {
+    height: 20em;
+}

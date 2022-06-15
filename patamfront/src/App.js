@@ -6,9 +6,10 @@ function App() {
   return (
     <div>
       <nav>
-        <NavLink to="/page1">First page</NavLink>
-        <NavLink to="/page2">Second page</NavLink>
-        <NavLink to="/page3">Third page</NavLink>
+        <NavLink to="/FleerOverview">FleerOverview</NavLink>
+        <NavLink to="/Monitoring">Monitoring</NavLink>
+        <NavLink to="/Teleoperation">Teleoperation</NavLink>
+        <NavLink to="/TimeCapsule">TimeCapsule</NavLink>
       </nav>
       <Outlet />
     </div>

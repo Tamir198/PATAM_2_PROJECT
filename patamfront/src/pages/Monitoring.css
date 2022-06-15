@@ -1,0 +1,26 @@
+    .monitoring__container {
+        border: 1px solid black;
+        height: 40%;
+    }
+    
+    .top__monitoring__panel {
+        display: flex;
+        align-content: space-between;
+        justify-content: space-between;
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    canvas.changes__over__time__graph {
+        width: 10% !important;
+    }
+    
+    .scatterGraph__container canvas {
+        width: 20%;
+    }
+    
+    .monitoring__graphs {
+        display: flex;
+        width: 20%;
+        justify-content: center;
+    }
