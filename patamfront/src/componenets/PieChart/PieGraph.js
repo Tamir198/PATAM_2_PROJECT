@@ -9,16 +9,17 @@ const PieGraph = ({activityOfPlanes}) => {
   };
 
   const data = [
-    { title: 'Active Planes', value: 10, color: '#E38627' },
-    { title: 'Non Active Planes', value: 15, color: '#C13C37' },
+    { title: 'Active Planes', value: 7, color: '#E38627' },
+    { title: 'Non Active Planes', value: 3, color: '#C13C37' },
   ];
 
   return (
     <>
+      <h1 className='title'>Active VS Inactive PLanes</h1>
       <PieChart className='pie__chart'
         data={data}
         label={({ dataEntry }) => `${dataEntry.value} ${dataEntry.title}`}
-        radius={20} 
+        radius={50} 
         labelStyle={{
           ...defaultLabelStyle,
         }}
