@@ -4,9 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import App from './App';
 import './index.css';
-import Page1 from "./pages/Page1";
-import Page2 from "./pages/Page2";
-import Page3 from "./pages/Page3";
+import FleerOverview from "./pages/FleerOverview";
+import Monitoring from "./pages/Monitoring";
+import Teleoperation from "./pages/Teleoperation";
+import TimeCapsule from "./pages/TimeCapsule";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,9 +15,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path='page1' element={<Page1/>} />
-          <Route path='page2' element={<Page2/>} />
-          <Route path='page3' element={<Page3/>} />
+          <Route path='FleerOverview' element={<FleerOverview/>} />
+          <Route path='Monitoring' element={<Monitoring/>} />
+          <Route path='Teleoperation' element={<Teleoperation/>} />
+          <Route path='TimeCapsule' element={<TimeCapsule/>} />
           <Route path="*" element={<p>Page not found</p>} />
         </Route>
       </Routes>

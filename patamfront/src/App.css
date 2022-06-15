@@ -1,0 +1,6 @@
+nav {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    width: 50%;
+}
