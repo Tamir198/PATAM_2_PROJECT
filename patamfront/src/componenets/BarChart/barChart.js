@@ -34,6 +34,8 @@ const defaultOptions = {
 };
 
 
-export function BarChart({graphData}) {
+ const BarChart = ({graphData}) => {
   return <Bar options={defaultOptions} data={graphData} />
 }
+
+export default BarChart;
