@@ -112,7 +112,11 @@ public class Hybrid implements TimeSeriesAnomalyDetector {
                 if(line )*/
 
             } else if(zScoreDetect.containsKey(description)){
-
+                String[] tokens = description.split("-");
+                tempReports = zScoreDetect.get(description).detect(new TimeSeries(tokens[0],tokens[1],ts));
+                if(tempReports.size() != 0) {
+                    anomalyReports.addAll(tempReports);
+                }
             }
         }
         return anomalyReports;
