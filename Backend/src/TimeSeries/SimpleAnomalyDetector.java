@@ -6,7 +6,7 @@ import java.util.List;
 public class SimpleAnomalyDetector implements TimeSeriesAnomalyDetector {
 
 	private List<CorrelatedFeatures> correlatedList;
-	float threshHold;
+	float threshHold= 0.95f;
 	TimeSeries timeSeries;
 
 	@Override

@@ -2,18 +2,23 @@ package TimeSeries;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class TimeSeries {
 
     private HashMap<String, ArrayList<Float>> arrTimeSeries;
     private String[] strFirstLine;
 
+    public TimeSeries(String feature1,String feature2,TimeSeries timeSeries){
+        strFirstLine=new String[2];
+        strFirstLine[0]=feature1;
+        strFirstLine[1]=feature2;
+        arrTimeSeries.put(feature1,timeSeries.getHashTimeSeries().get(feature1));
+        arrTimeSeries.put(feature2,timeSeries.getHashTimeSeries().get(feature2));
+
+    }
     // The function saves a csv file to a Hashmap
     public TimeSeries(String csvFileName) {
-
         try {
             Scanner scanner = new Scanner(new File(csvFileName));
             strFirstLine = scanner.nextLine().split(",");

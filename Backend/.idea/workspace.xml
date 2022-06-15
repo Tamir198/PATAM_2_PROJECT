@@ -21,7 +21,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="29Kpl6WTUs61ZYMXeTlc0fXZFwD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -82,19 +82,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="FlightList_javafx" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="FlightList_javafx" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -113,7 +100,9 @@
       <workItem from="1652958920982" duration="5865000" />
       <workItem from="1654009631041" duration="5021000" />
       <workItem from="1654591989421" duration="13974000" />
-      <workItem from="1654936119578" duration="14973000" />
+      <workItem from="1654936119578" duration="23548000" />
+      <workItem from="1655281135753" duration="7025000" />
+      <workItem from="1655289897141" duration="20733000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,8 @@
 package TimeSeries;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class StatLib {
 
 
@@ -64,7 +67,7 @@ public class StatLib {
 	}
 
 	// splits point arrays into an array of x or array of y, boolean false is x true is y
-	private static float[] subPointArray(Point[] points, boolean b) {
+	public static float[] subPointArray(Point[] points, boolean b) {
 		float[] coordinate = new float[points.length];
 
 		for (int nIndex = 0; nIndex < points.length; nIndex++) {
@@ -76,4 +79,21 @@ public class StatLib {
 
 		return coordinate;
 	}
+
+	public static boolean isContain(ArrayList<AnomalyReport> arrayl, AnomalyReport array) {
+		Iterator var2 = arrayl.iterator();
+
+		AnomalyReport anomalyReport;
+		do {
+			if (!var2.hasNext()) {
+				return false;
+			}
+
+			anomalyReport = (AnomalyReport)var2.next();
+		} while(!anomalyReport.description.equals(array.description) || anomalyReport.timeStep != array.timeStep);
+
+		return true;
+	}
 }
+
+
