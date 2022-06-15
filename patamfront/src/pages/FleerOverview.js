@@ -1,11 +1,11 @@
 import './FleetOverview.css'
 import React from 'react'
 
-import { getMilesTraveledData, getAverageYearlyDistance } from '../DB/db';
+import { getMilesTraveledData, getAverageYearlyDistance, getFleetSizeYearly } from '../DB/db';
 
 import PieGraph from '../componenets/PieChart/PieGraph';
 import BarChart from '../componenets/BarChart/barChart';
-
+import LineChart from '../componenets/LineChart/LineChart';
 
 
 const FleerOverview = () => {
@@ -13,9 +13,11 @@ const FleerOverview = () => {
   return (
     <>
       <div>TODO render dummy map in here</div>
-      <PieGraph />
-      <BarChart graphData={getMilesTraveledData()} />
-      <BarChart graphData={getAverageYearlyDistance()} />
+
+        <PieGraph />
+        <LineChart graphData={getFleetSizeYearly()} />
+        <BarChart graphData={getMilesTraveledData()} />
+        <BarChart graphData={getAverageYearlyDistance()} />
       <button>Refresh Data</button>
     </>
   )

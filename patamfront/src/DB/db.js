@@ -52,3 +52,30 @@ export const getAverageYearlyDistance = () => {
 
  return milesTraveledData;
 }
+
+
+export const getFleetSizeYearly = () => {
+  
+ const fleetData = [
+  { name: 'January', totalSize: 2 },
+  { name: 'February', totalSize: 5 },
+  { name: 'March', totalSize: 7 },
+  { name: 'April', totalSize: 8 },
+  { name: 'May', totalSize: 9 },
+  { name: 'June', totalSize: 10 },
+];
+
+const graphData = {
+  labels: fleetData.map(item => item.name),
+  datasets: [
+    {
+      label: 'Fleet Size From Begining Of The Year',
+      data: fleetData.map((item) => item.totalSize),
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+  ],
+};
+
+return graphData
+}
