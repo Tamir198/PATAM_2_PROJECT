@@ -18,7 +18,7 @@ const FleerOverview = () => {
         <LineChart graphData={getFleetSizeYearly()} />
         <BarChart graphData={getMilesTraveledData()} />
         <BarChart graphData={getAverageYearlyDistance()} />
-      <button>Refresh Data</button>
+      <button className='centered refresh__button'>Refresh Data</button>
     </>
   )
 }

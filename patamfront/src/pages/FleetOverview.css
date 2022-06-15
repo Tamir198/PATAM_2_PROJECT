@@ -1,0 +1,12 @@
+.centered {
+    margin: 2em auto 2em auto;
+    display: block;
+    height: 3em;
+    border-radius: 1em;
+    background-color: rgb(227, 134, 39);
+}
+
+.refresh__button:hover {
+    box-shadow: 50px rgba(215, 14, 14, 0.2);
+    cursor: pointer;
+}
