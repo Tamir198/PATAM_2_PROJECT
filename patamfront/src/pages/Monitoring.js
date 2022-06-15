@@ -1,8 +1,15 @@
 import React from 'react'
-
+import JoyStickPannel from '../componenets/JoyStickPannel/JoyStickPannel'
 const Monitoring = () => {
   return (
-    <div>Monitoring</div>
+    <>
+      <div>Monitoring</div>
+      <main>
+        <JoyStickPannel />
+      </main>
+
+    </>
+
   )
 }
 

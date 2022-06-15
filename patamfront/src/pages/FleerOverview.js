@@ -13,11 +13,11 @@ const FleerOverview = () => {
   return (
     <>
       <div>TODO render dummy map in here</div>
-
-        <PieGraph />
-        <LineChart graphData={getFleetSizeYearly()} />
-        <BarChart graphData={getMilesTraveledData()} />
-        <BarChart graphData={getAverageYearlyDistance()} />
+     
+      <PieGraph />
+      <LineChart graphData={getFleetSizeYearly()} />
+      <BarChart graphData={getMilesTraveledData()} />
+      <BarChart graphData={getAverageYearlyDistance()} />
       <button className='centered refresh__button'>Refresh Data</button>
     </>
   )
