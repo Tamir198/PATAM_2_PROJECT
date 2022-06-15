@@ -4,9 +4,3 @@ nav {
     justify-content: space-between;
     width: 50%;
 }
-
-canvas {
-    width: 80% !important;
-    height: 45% !important;
-    margin: 0 auto;
-}

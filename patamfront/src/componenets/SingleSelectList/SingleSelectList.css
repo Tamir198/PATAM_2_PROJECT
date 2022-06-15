@@ -1,0 +1,13 @@
+.select__list {
+    list-style: none;
+}
+
+.select__list>* {
+    border: 2px solid black;
+    width: 10em;
+}
+
+.select__list>*:hover {
+    background: cyan;
+    cursor: pointer;
+}

@@ -13,7 +13,7 @@ const FleerOverview = () => {
   return (
     <>
       <div>TODO render dummy map in here</div>
-     
+
       <PieGraph />
       <LineChart graphData={getFleetSizeYearly()} />
       <BarChart graphData={getMilesTraveledData()} />

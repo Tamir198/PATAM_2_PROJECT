@@ -55,7 +55,7 @@ export const getAverageYearlyDistance = () => {
 
 
 export const getFleetSizeYearly = () => {
-  
+
  const fleetData = [
   { name: 'January', totalSize: 2 },
   { name: 'February', totalSize: 5 },
@@ -79,3 +79,29 @@ const graphData = {
 
 return graphData
 }
+
+export const getLineGraphChangesOverTime = () => {
+  
+  const fleetData = [
+   { name: '10:00', totalSize: 2 },
+   { name: '10:01', totalSize: 5 },
+   { name: '10:02', totalSize: 70},
+   { name: '10:03', totalSize: 8 },
+   { name: '10:04', totalSize: 99 },
+   { name: '10:05', totalSize: 10 },
+ ];
+ 
+ const graphData = {
+   labels: fleetData.map(item => item.name),
+   datasets: [
+     {
+       label: '',
+       data: fleetData.map((item) => item.totalSize),
+       borderColor: 'rgb(255, 99, 132)',
+       backgroundColor: 'rgba(255, 99, 132, 0.5)',
+     },
+   ],
+ };
+ 
+ return graphData
+ }
