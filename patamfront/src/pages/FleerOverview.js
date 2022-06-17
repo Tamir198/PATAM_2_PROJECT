@@ -6,14 +6,16 @@ import { getMilesTraveledData, getAverageYearlyDistance, getFleetSizeYearly } fr
 import PieGraph from '../componenets/PieChart/PieGraph';
 import BarChart from '../componenets/BarChart/barChart';
 import LineChart from '../componenets/LineChart/LineChart';
+import Map from '../componenets/Map/Map';
 
 
 const FleerOverview = () => {
 
   return (
     <>
-      <div>TODO render dummy map in here</div>
-
+      <div className='map__container'>
+        <Map />
+      </div>
       <PieGraph />
       <LineChart graphData={getFleetSizeYearly()} />
       <BarChart graphData={getMilesTraveledData()} />

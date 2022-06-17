@@ -6,7 +6,7 @@ const SingleSelectList = ({ listItems }) => {
   return (
     <>
       <ul className='select__list' >
-        {listItems.map(item => <li>{item}</li>)}
+        {listItems.map((item,index) => <li key={index}>{item}</li>)}
       </ul>
     </>
   )
