@@ -1,0 +1,6 @@
+.teleoperation__container {
+    display: flex;
+    justify-content: center;
+    margin: 10em;
+    gap: 3em;
+}
