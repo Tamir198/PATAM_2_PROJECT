@@ -7,7 +7,7 @@ const JoyStickPannel = () => {
   return (
     <div className='upper__slider'>
       <label className='slider__vertical' htmlFor="horizontal__slider">Throttle</label>
-      <input type="range" min="1" max="100" class="slider" id='horizontal__slider' />
+      <input type="range" min="1" max="100" className="slider" id='horizontal__slider' />
 
       <Joystick
         size={100}
@@ -19,7 +19,7 @@ const JoyStickPannel = () => {
       />
 
       <label htmlFor="vertical__slider">Stabilizer</label>
-      <input type="range" min="1" max="100" class="slider" id='vertical__slider' />
+      <input type="range" min="1" max="100" className="slider" id='vertical__slider' />
     </div>
 
   )

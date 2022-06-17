@@ -16,3 +16,7 @@ canvas {
     height: 45%;
     margin: 0 auto;
 }
+
+.map__container {
+    width: 100%;
+}
