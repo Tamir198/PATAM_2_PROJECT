@@ -3,16 +3,15 @@ package patam2.agent.model;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.CharBuffer;
 import java.util.HashMap;
 import java.util.Observable;
-import java.util.Scanner;
 
 public class Model extends Observable {
 
     HashMap<String, String> SymbolTable;
     Socket fg;
     Socket fgServer;
+    TimeSeries timeSeries;
     String fg_root;
     PrintWriter out2fg;
 
@@ -87,8 +86,8 @@ public class Model extends Observable {
         out2fg.flush();
     }
 
-    public void setTimeSeries(String XMLFile){
-
+    public void setTimeSeries(String csvFile){
+        timeSeries = new TimeSeries(csvFile);
     }
 
     @Override
