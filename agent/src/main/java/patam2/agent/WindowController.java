@@ -17,7 +17,6 @@ public class WindowController extends Observable {
     Slider slideThrottle;
     @FXML
     Slider slideRudder;
-    // TODO manual start, breaks
 
     // mouse clicked or released
     boolean mousePushed;
@@ -37,8 +36,6 @@ public class WindowController extends Observable {
         elevator = 0;
         rudder = 0;
         throttle = 0;
-        //paint();
-        //slideRudder.setValue(50);
     }
 
     public double getAileron() {
@@ -57,9 +54,14 @@ public class WindowController extends Observable {
         return throttle;
     }
 
+    public String getRoot() {
+        return "src/main/resources/Protocol";
+    }
+
     void paint(){
         // in order to paint the joystick, we first need to extract from it a GraphicsContext
         GraphicsContext gc = joystick.getGraphicsContext2D();
+
         // get the middle of the canvas (x,y values of the canvas' center)
         mx = joystick.getWidth()/2;
         my = joystick.getHeight()/2;
@@ -70,13 +72,8 @@ public class WindowController extends Observable {
         // paint an oval
         gc.strokeOval(jx-50, jy-50, 100,100);
 
-        /* get the aileron and elevator's position between -1,1.
-        ATTENTION! here we didn't fix the problem that we can get the mouse out of the canvas,
-        and we might get values bigger/smaller than 1,-1.
-        this can be fixed by taking the max/min value between 1,-1 and the (jx-mx)/mx and (jy-my)/my.
-        the aileron moves on the X's, and the elevator on the Y's */
-        aileron = (jx-mx)/mx;
-        elevator = -((jy-my)/my);
+        aileron = Math.min(Math.max((jx-mx)/mx,-1),1);
+        elevator = Math.min(Math.max((jy-my)/my,-1),1);
 
         // notify changes to the controller (the observer)
         setChanged();
@@ -107,7 +104,6 @@ public class WindowController extends Observable {
     public void mouseMove(MouseEvent me){
         // check if there was a mousePush, beacuse we want to relate only to the mouse drag
         if(mousePushed){
-//            System.out.println("mouse move "+me.getX()+","+me.getY());
             // paint the joystick according to where to mouse is moving
             jx = me.getX();
             jy = me.getY();
@@ -123,16 +119,54 @@ public class WindowController extends Observable {
     }
 
     public void rudderMove(MouseEvent mouseEvent){
-        System.out.println(slideRudder.getValue());
-        // TODO fix rudder values by adding power
+
         double rudderValue = (slideRudder.getValue() - 50 ) / 50;
-        if(0 < rudderValue && rudderValue < 0.1){
-            rudder = 0.05;
-        } else {
-            rudder = (slideRudder.getValue() - 50) / 50;
-        }
+        rudder = (slideRudder.getValue() - 50) / 50;
         setChanged();
         notifyObservers();
         System.out.println("rudder: " + rudder);
+    }
+
+    public void throttleDown(MouseEvent me){
+        if(!mousePushed){
+            mousePushed = true;
+            System.out.println("throttle is down");
+        }
+    }
+
+    // release the mouse click
+    public void throttleUp(MouseEvent me){
+        if(mousePushed){
+            mousePushed = false;
+            System.out.println("throttle is up");
+            // Change the throttle value to where the slider was pressed
+            throttle = slideThrottle.getValue() / 100;
+            setChanged();
+            notifyObservers();
+            System.out.println("throttle: " + throttle);
+        }
+    }
+
+    public void rudderDown(MouseEvent me){
+        if(!mousePushed){
+            mousePushed = true;
+            System.out.println("rudder is down");
+            rudder = (slideRudder.getValue() - 50 ) / 50;
+            setChanged();
+            notifyObservers();
+            System.out.println("rudder: " + rudder);
+        }
+    }
+
+    // release the mouse click
+    public void rudderUp(MouseEvent me){
+        if(mousePushed){
+            mousePushed = false;
+            rudder = 0.05;
+            slideRudder.setValue(50);
+            setChanged();
+            notifyObservers();
+            System.out.println("rudder: " + rudder);
+        }
     }
 }

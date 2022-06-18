@@ -33,7 +33,7 @@ public class Controller implements Observer {
     }
 
     public void smooth(String propertiesPath){
-        // TODO: smoothing using a radius
+
     }
 
     // Sends a Json file to the backend
@@ -48,6 +48,7 @@ public class Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        model.setFg_root(windowController.getRoot());
         model.setAileron(windowController.getAileron());
         model.setElevators(windowController.getElevator());
         model.setThrottle(windowController.getThrottle());

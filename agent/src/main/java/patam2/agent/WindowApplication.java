@@ -16,6 +16,7 @@ public class WindowApplication extends Application {
         try{
             FXMLLoader fxml = new FXMLLoader();
             BorderPane root = fxml.load(getClass().getResource("Window.fxml").openStream());
+
             //the view class(WindowController) doesn't know the Model and the Controller, because of the Observer design pattern
             WindowController winC = fxml.getController(); // view
             winC.paint();

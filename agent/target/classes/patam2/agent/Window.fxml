@@ -32,10 +32,10 @@
         </MenuBar>
     </top>
     <left>
-        <Slider fx:id="slideThrottle" onMouseDragged="#throttleMove" orientation="VERTICAL" BorderPane.alignment="CENTER" />
+        <Slider fx:id="slideThrottle" onMouseDragged="#throttleMove" onMousePressed="#throttleDown" onMouseReleased="#throttleUp" orientation="VERTICAL" BorderPane.alignment="CENTER" />
     </left>
     <bottom>
-        <Slider fx:id="slideRudder" onMouseDragged="#rudderMove" prefHeight="0.0" prefWidth="527.0" BorderPane.alignment="CENTER" />
+        <Slider fx:id="slideRudder" onMouseDragged="#rudderMove" onMousePressed="#rudderDown" onMouseReleased="#rudderUp" prefHeight="0.0" prefWidth="527.0" BorderPane.alignment="CENTER" />
     </bottom>
     <center>
         <Canvas fx:id="joystick" height="200.0" onMouseDragged="#mouseMove" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" width="200.0" BorderPane.alignment="CENTER" />

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+ <logging>
+  <log>
+   <filename>TimeSeries.csv</filename>
+   <enabled>true</enabled>
+   <interval-ms>100</interval-ms>
+   <delimiter>,</delimiter>
+   <entry>
+    <enabled>true</enabled><ref></ref>
+    <title>ailerons</title>
+    <property>/controls/flight/aileron</property>
+   </entry>
+   <entry>
+    <enabled>true</enabled>
+    <title>elevators</title>
+    <property>/controls/flight/elevator</property>
+   </entry>
+   <entry>
+    <enabled>true</enabled>
+    <title>rudder</title>
+    <property>/controls/flight/rudder</property>
+   </entry>
+   <entry>
+    <enabled>true</enabled>
+    <title>throttle</title>
+    <property>/controls/engines/current-engine/throttle</property>
+   </entry>
+   <entry>
+    <enabled>true</enabled>
+    <title>brakes</title>
+    <property>/controls/flight/speedbrake</property>
+   </entry>
+
+  </log>
+ </logging>
+</PropertyList>

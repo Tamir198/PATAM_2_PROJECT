@@ -3,14 +3,17 @@ package patam2.agent.model;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.CharBuffer;
 import java.util.HashMap;
 import java.util.Observable;
+import java.util.Scanner;
 
 public class Model extends Observable {
 
     HashMap<String, String> SymbolTable;
     Socket fg;
-    // TODO TimeSeries
+    Socket fgServer;
+    String fg_root;
     PrintWriter out2fg;
 
     public Model(String propertiesFileName){
@@ -36,11 +39,15 @@ public class Model extends Observable {
         try {
             fg = new Socket(SymbolTable.get("ip"),port);
             out2fg = new PrintWriter(fg.getOutputStream());
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // connecting to the flight gear as a server
+
     }
 
     public void setAileron(double x){
@@ -74,17 +81,15 @@ public class Model extends Observable {
         out2fg.flush();
     }
 
-    public void setSymbolTable(String XMLFile){
+    public void setFg_root(String path){
+        String command = SymbolTable.get("root");
+        out2fg.println(command+" "+path);
+        out2fg.flush();
+    }
+
+    public void setTimeSeries(String XMLFile){
 
     }
-    /*public TimeSeries getFlight(){
-        return null;
-    }
-
-    public void setTimeSeries(){
-
-    }
-    */
 
     @Override
     public void finalize(){
@@ -92,6 +97,7 @@ public class Model extends Observable {
         try {
             out2fg.close();
             fg.close();
+            fgServer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
