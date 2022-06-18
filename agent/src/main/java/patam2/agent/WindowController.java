@@ -26,7 +26,7 @@ public class WindowController extends Observable {
     double mx, my;
 
     // aileron = , elevator = going up and down (adjusting height) , rudder = steering left and right, throttle = speed
-    double aileron, elevator,rudder,throttle;
+    double aileron, elevator,rudder,throttle, breaks;
 
     public WindowController(){
         mousePushed = false;
@@ -36,6 +36,7 @@ public class WindowController extends Observable {
         elevator = 0;
         rudder = 0;
         throttle = 0;
+        breaks = 0;
     }
 
     public double getAileron() {
@@ -53,6 +54,8 @@ public class WindowController extends Observable {
     public double getThrottle() {
         return throttle;
     }
+
+    public double getBreaks(){ return breaks; }
 
     public String getRoot() {
         return "src/main/resources/Protocol";
@@ -169,4 +172,10 @@ public class WindowController extends Observable {
             System.out.println("rudder: " + rudder);
         }
     }
+
+    public void shutdown(){}
+
+    public void reset(){}
+
+    public void printStream(){}
 }
