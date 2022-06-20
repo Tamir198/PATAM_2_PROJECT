@@ -1,9 +1,8 @@
 package patam2.agent.controller;
 
+import patam2.agent.view.WindowController;
 import patam2.agent.model.Model;
-import patam2.agent.WindowController;
 
-import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 

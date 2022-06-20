@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15f7662e-cbfa-4269-87fb-9cf332df7640" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../agent/src/main/java/patam2/agent/model/TimeSeries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../agent/src/main/java/patam2/agent/WindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../agent/src/main/java/patam2/agent/WindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../agent/src/main/java/patam2/agent/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../agent/src/main/java/patam2/agent/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../agent/src/main/resources/patam2/agent/Window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../agent/src/main/resources/patam2/agent/Window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../agent/target/classes/patam2/agent/Window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../agent/target/classes/patam2/agent/Window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../agent/target/classes/patam2/agent/WindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../agent/target/classes/patam2/agent/WindowController.class" afterDir="false" />
-    </list>
+    <list default="true" id="15f7662e-cbfa-4269-87fb-9cf332df7640" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

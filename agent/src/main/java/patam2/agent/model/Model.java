@@ -1,8 +1,7 @@
 package patam2.agent.model;
 
 import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.HashMap;
 import java.util.Observable;
 
@@ -15,9 +14,11 @@ public class Model extends Observable {
     String fg_root;
     PrintWriter out2fg;
 
-    public Model(String propertiesFileName){
+    public Model(URL propertiesFileName){
         SymbolTable = new HashMap<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(propertiesFileName))){
+        try {
+            URLConnection urlConnection = propertiesFileName.openConnection();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))){
             String line;
             while ((line=in.readLine()) != null){
 
@@ -28,6 +29,11 @@ public class Model extends Observable {
                 SymbolTable.put(splitProperties[0],splitProperties[1]);
             }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
