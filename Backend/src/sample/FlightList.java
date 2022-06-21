@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 
 import java.net.URL;
@@ -96,7 +97,7 @@ public class FlightList implements Initializable {
                 height = doc.getString("max_height");
                 speed = doc.getString("max_speed");
 
-                flight.add(new Flights(id_, pos,is_flying, starting, landing, date_, height, speed));
+                flight.add(new Flights(id_,is_flying, starting, landing, date_, height, speed));
             }
             list = FXCollections.observableArrayList(flight);
 
@@ -131,10 +132,10 @@ public class FlightList implements Initializable {
             status.setText("Please select a row and perform this action again");
         } else {
 //          get the value of the selected email column
-            String id = selectedItem.getFlight_id();
+            ObjectId flight_id = new ObjectId(selectedItem.getFlight_id());
 
 //          here we are using the id as primary key to find each document to delete from the database
-            coll.deleteOne(eq("id",id));
+            coll.deleteOne(eq("_id",flight_id));
 
 //          call the rePopulateTable method
             rePopulateTable();
@@ -151,7 +152,7 @@ public class FlightList implements Initializable {
 //      this makes the table editable
         table.setEditable(true);
 
-        id.setCellFactory(TextFieldTableCell.forTableColumn());
+        /*id.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setFlight_id method
         id.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
@@ -162,7 +163,7 @@ public class FlightList implements Initializable {
                         .setFlight_id(event.getNewValue());
 
             }
-        });
+        });*/
 
         date.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -268,7 +269,7 @@ public class FlightList implements Initializable {
                 height = doc.getString("max_height");
                 speed = doc.getString("max_speed");
 
-                flight.add(new Flights(id_, pos,is_flying, starting, landing, date_, height, speed));
+                flight.add(new Flights(id_,is_flying, starting, landing, date_, height, speed));
             }
             list = FXCollections.observableArrayList(flight);
 
