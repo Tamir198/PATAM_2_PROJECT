@@ -1,5 +1,6 @@
 package sample;
 
+import TimeSeries.TimeSeries;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -16,10 +17,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.bson.Document;
 
+import java.io.File;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
@@ -40,6 +47,10 @@ public class Controller implements Initializable{
     private TextField max_speed;
     @FXML
     private Button att;
+    @FXML
+    private Button csv;
+
+
 
 //  create an observable list to hold the content of the combobox
     ObservableList<String> list  = FXCollections.observableArrayList("true", "false");
@@ -106,5 +117,65 @@ public class Controller implements Initializable{
         primaryStage.setTitle("Flight List");
         primaryStage.setScene(new Scene(root, 772, 400));
         primaryStage.show();
+    }
+
+    public void getFlightFromCsv(ActionEvent actionEvent) {
+
+
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("choose CSV file");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV","*.csv"));
+        fileChooser.setInitialDirectory(new File("src/resources"));
+        File chosen=fileChooser.showOpenDialog(null);
+        if(chosen!=null) {
+            TimeSeries ts=new TimeSeries(chosen.getAbsolutePath());
+            ArrayList<Float> speedArr = ts.getHashTimeSeries().get("airspeed-kt");
+            ArrayList<Float> heightArr = ts.getHashTimeSeries().get("altitude-ft");
+            float maxSpeed = speedArr.stream().max(Float::compare).get();
+            float maxHeight = heightArr.stream().max(Float::compare).get();
+            try{
+//          create a connection to mongodb server
+
+                MongoClient mongoClient = new MongoClient(mongoClientURI);
+
+//          create a database name
+                MongoDatabase mongoDatabase = mongoClient.getDatabase("FlightDB");
+
+//          create a collection
+                MongoCollection coll = mongoDatabase.getCollection("FlightList");
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                ArrayList<String>current_time=ts.getCurrentTime();
+
+//          get the values of the fields
+                Document doc = new Document("date", formatter.format(date))
+                        .append("Starting_Time", current_time.get(0))
+                        .append("Landing_Time", current_time.get(current_time.size()-1))
+                        .append("Currently_Flying", "false")
+                        .append("max_height",maxHeight + "ft")
+                        .append("max_speed", maxSpeed + "kt");
+
+//          save the document
+                coll.insertOne(doc);
+
+//          display a success message
+                status.setText("saved successfully!");
+
+//          set the fields to null or empty
+//                date.setText("");
+//                starting_time.setText("");
+//                landing_time.setText("");
+//                currently_flying.setValue(null);
+//                max_height.setText("");
+//                max_speed.setText("");
+            }
+            catch (Exception e){
+                System.out.println(e.getClass().getName() + ": " + e.getMessage());
+//          display the error message
+                status.setText("data was not saved");
+            }
+        }
+
     }
 }

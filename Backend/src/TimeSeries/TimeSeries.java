@@ -9,6 +9,11 @@ public class TimeSeries {
     private HashMap<String, ArrayList<Float>> arrTimeSeries;
     private String[] strFirstLine;
 
+    public ArrayList<String> getCurrentTime() {
+        return currentTime;
+    }
+
+    private ArrayList<String>currentTime;
     public TimeSeries(String feature1,String feature2,TimeSeries timeSeries){
         strFirstLine=new String[2];
         strFirstLine[0]=feature1;
@@ -22,6 +27,7 @@ public class TimeSeries {
         try {
             Scanner scanner = new Scanner(new File(csvFileName));
             strFirstLine = scanner.nextLine().split(",");
+            currentTime=new ArrayList<>();
             String[] strNextLine;
             arrTimeSeries = new HashMap<>();
             int nIndex;
@@ -34,8 +40,10 @@ public class TimeSeries {
             // Continues traversing the file from the second line onwards
             while (scanner.hasNextLine()) {
                 strNextLine = scanner.nextLine().split(",");
-                for (int nCol = 0; nCol < strNextLine.length; nCol++)
-                    arrTimeSeries.get(strFirstLine[nCol]).add(Float.parseFloat(strNextLine[nCol]));
+                for (int nCol = 0; nCol < strNextLine.length; nCol++){
+                     if(nCol==strNextLine.length-1){currentTime.add(strNextLine[nCol]);}
+                     else{arrTimeSeries.get(strFirstLine[nCol]).add(Float.parseFloat(strNextLine[nCol]));}
+                }
             }
 
             // Closes the file reader
@@ -45,6 +53,9 @@ public class TimeSeries {
             System.out.println("File not found !!!");
         }
     }
+
+
+
 
     public HashMap<String, ArrayList<Float>> getHashTimeSeries() {
         return arrTimeSeries;

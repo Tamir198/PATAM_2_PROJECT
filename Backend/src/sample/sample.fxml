@@ -49,7 +49,7 @@
       </VBox>
       <HBox alignment="CENTER" layoutY="295.0" prefHeight="40.0" prefWidth="331.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="94.0" text="Add CSV" />
+            <Button fx:id="csv" mnemonicParsing="false" prefHeight="40.0" prefWidth="94.0" text="Add CSV" onAction="#getFlightFromCsv" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#getFieldValues" prefHeight="40.0" prefWidth="94.0" text="Add Flight" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
