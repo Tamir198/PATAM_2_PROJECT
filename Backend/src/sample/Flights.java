@@ -3,7 +3,6 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Flights {
-    private Integer Index;
     private final SimpleStringProperty Flight_id;
     private final SimpleStringProperty Currently_Flying;
     private final SimpleStringProperty Starting_Time;
@@ -12,17 +11,8 @@ public class Flights {
     private final SimpleStringProperty max_height;
     private final SimpleStringProperty max_speed;
 
-    public Integer getIndex() {
-        return Index;
-    }
-
-    public void setIndex(Integer index){
-        this.Index = index;
-    }
-
-    public Flights(String Flight_id, Integer Index, String Currently_Flying, String Starting_Time, String Landing_Time, String date, String max_height, String max_speed) {
+    public Flights(String Flight_id, String Currently_Flying, String Starting_Time, String Landing_Time, String date, String max_height, String max_speed) {
         this.Flight_id = new SimpleStringProperty(Flight_id);
-        this.Index = Index;
         this.Currently_Flying = new SimpleStringProperty(Currently_Flying);
         this.Starting_Time = new SimpleStringProperty(Starting_Time);
         this.Landing_Time = new SimpleStringProperty(Landing_Time);
@@ -30,7 +20,6 @@ public class Flights {
         this.max_height = new SimpleStringProperty(max_height);
         this.max_speed=new SimpleStringProperty(max_speed);
     }
-
 
     public String getFlight_id() {
         return Flight_id.get();
