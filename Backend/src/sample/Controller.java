@@ -71,8 +71,7 @@ public class Controller implements Initializable{
                     .append("Landing_Time", landing_time.getText())
                     .append("Currently_Flying", currently_flying.getValue())
                     .append("max_height", max_height.getText() + "ft")
-                    .append("max_speed", max_speed.getText() + "mph");
-
+                    .append("max_speed", max_speed.getText() + "kt");
 
 //          save the document
             coll.insertOne(doc);
