@@ -2,6 +2,7 @@ package sample;
 
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -26,25 +27,22 @@ import static com.mongodb.client.model.Filters.eq;
 
 
 public class FlightList implements Initializable {
-    private final static String HOST = "localhost";
-    private final static int PORT = 27017;
+    private final static MongoClientURI mongoClientURI = new MongoClientURI("mongodb+srv://Admin:QAVvsM8ag0DVny7R@cluster0.oc8hw.mongodb.net/?authMechanism=SCRAM-SHA-1&authSource=admin");
     private String is_flying;
     private String starting;
     private String landing;
     private String height;
     private String speed;
     private String date_;
-//    private String _email;
-//    private String _gender;
-//    private String pnumber;
-    private int pos;
+    private String id_;
+    int pos;
 
     @FXML
     private Label status;
     @FXML
     private TableView<Flights> table;
     @FXML
-    private TableColumn<Flights, Integer> id;
+    private TableColumn<Flights, String> id;
     @FXML
     private TableColumn<Flights, String> currently_flying;
     @FXML
@@ -70,10 +68,11 @@ public class FlightList implements Initializable {
 
 
     //  create a mongodb connection
-    MongoClient mongoClient = new MongoClient(HOST, PORT);
+    //MongoClient mongoClient = new MongoClient(HOST, PORT);
+    MongoClient mongoClient = new MongoClient(mongoClientURI);
 
     //  create a database name
-    MongoDatabase mongoDatabase = mongoClient.getDatabase("Confab");
+    MongoDatabase mongoDatabase = mongoClient.getDatabase("FlightDB");
 
     //  create a collection
     MongoCollection coll = mongoDatabase.getCollection("FlightList");
@@ -89,6 +88,7 @@ public class FlightList implements Initializable {
                 pos = i + 1;
 
                 Document doc = cursor.next();
+                id_ = doc.getObjectId("_id").toString();
                 date_ = doc.getString("date");
                 starting = doc.getString("Starting_Time");
                 landing = doc.getString("Landing_Time");
@@ -96,7 +96,7 @@ public class FlightList implements Initializable {
                 height = doc.getString("max_height");
                 speed = doc.getString("max_speed");
 
-                flight.add(new Flights(pos, is_flying, starting, landing, date_, height, speed));
+                flight.add(new Flights(id_, pos,is_flying, starting, landing, date_, height, speed));
             }
             list = FXCollections.observableArrayList(flight);
 
@@ -123,39 +123,6 @@ public class FlightList implements Initializable {
         mainClass.start(primaryStage);
     }
 
-//    public void editAttendanceList() {
-//        Flights selectedItem = table.getSelectionModel().getSelectedItem();
-//        if (selectedItem == null){
-////          display an error message if no row was selected
-//            status.setText("Please select a row and perform this action again");
-//        }
-//        else{
-//            is_flying = selectedItem.getCurrently_Flying();
-//            starting = selectedItem.getStarting_Time();
-//            landing = selectedItem.getDate();
-//            height = selectedItem.getLanding_Time();
-//            speed = selectedItem.getMax_height();
-//
-////          here i am using the email as my primary key to find each document to update it in the database
-//            coll.updateOne(eq("email", height), new Document("$set",
-//                    new Document("firstname", is_flying)
-//                            .append("lastname", starting)
-//                            .append("gender", landing)
-//                            .append("email", height)
-//                            .append("phone_number", speed)));
-//
-////          call the rePopulateTable method
-//            rePopulateTable();
-//
-////          call the setTable method
-//            setTable();
-//
-////          hide the error message
-//            status.setText("");
-//        }
-//
-//    }
-
     public void deleteFlight() {
 //      get the selected row
         Flights selectedItem = table.getSelectionModel().getSelectedItem();
@@ -164,10 +131,10 @@ public class FlightList implements Initializable {
             status.setText("Please select a row and perform this action again");
         } else {
 //          get the value of the selected email column
-            String landing_time_ = selectedItem.getLanding_Time();
+            String id = selectedItem.getFlight_id();
 
-//          here i am using the email as my primary key to find each document to delete from the database
-            coll.deleteOne(eq("date", date_));
+//          here we are using the id as primary key to find each document to delete from the database
+            coll.deleteOne(eq("id",id));
 
 //          call the rePopulateTable method
             rePopulateTable();
@@ -184,9 +151,22 @@ public class FlightList implements Initializable {
 //      this makes the table editable
         table.setEditable(true);
 
+        id.setCellFactory(TextFieldTableCell.forTableColumn());
+
+//      gets the new value and calls the setFlight_id method
+        id.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Flights, String> event) {
+
+                ((Flights) event.getTableView().getItems().get(event.getTablePosition().getRow()))
+                        .setFlight_id(event.getNewValue());
+
+            }
+        });
+
         date.setCellFactory(TextFieldTableCell.forTableColumn());
 
-//      gets the new value and calls the setFirstname method
+//      gets the new value and calls the setDate method
         date.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
@@ -197,10 +177,10 @@ public class FlightList implements Initializable {
             }
         });
 
-        //      make lastname column editable with a text-field
+        //      make starting_time column editable with a text-field
         starting_time.setCellFactory(TextFieldTableCell.forTableColumn());
 
-//      gets the new value and calls the setFirstname method
+//      gets the new value and calls the setStarting_Time method
         starting_time.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
@@ -209,10 +189,10 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make phone number column editable with a text-field
+//      make landing_time column editable with a text-field
         landing_time.setCellFactory(TextFieldTableCell.forTableColumn());
 
-//      gets the new value and calls the setFirstname method
+//      gets the new value and calls the setLanding_Time method
         landing_time.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
@@ -221,10 +201,10 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make firstname column editable with a text-field
+//      make currently_flying column editable with a text-field
         currently_flying.setCellFactory(TextFieldTableCell.forTableColumn());
 
-//      gets the new value and calls the setFirstname method
+//      gets the new value and calls the setCurrently_Flying method
         currently_flying.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
@@ -235,9 +215,9 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make phone number column editable with a text-field
+//      make max_height column editable with a text-field
         max_height.setCellFactory(TextFieldTableCell.forTableColumn());
-//      gets the new value and calls the setFirstname method
+//      gets the new value and calls the setMax_height method
         max_height.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
@@ -245,8 +225,10 @@ public class FlightList implements Initializable {
                         .setMax_height(event.getNewValue());
             }
         });
+
+//      make max_speed column editable with a text-field
         max_speed.setCellFactory(TextFieldTableCell.forTableColumn());
-//      gets the new value and calls the setFirstname method
+//      gets the new value and calls the setMax_speed method
         max_speed.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Flights, String> event) {
@@ -254,8 +236,9 @@ public class FlightList implements Initializable {
                         .setMax_speed(event.getNewValue());
             }
         });
+
 //      set the values of each column to display on the table
-        id.setCellValueFactory(new PropertyValueFactory<Flights, Integer>("id"));
+        id.setCellValueFactory(new PropertyValueFactory<Flights, String>("Flight_id"));
         date.setCellValueFactory(new PropertyValueFactory<Flights, String>("date"));
         starting_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("Starting_Time"));
         landing_time.setCellValueFactory(new PropertyValueFactory<Flights, String>("Landing_Time"));
@@ -274,9 +257,10 @@ public class FlightList implements Initializable {
         try {
 //          loop through the database and then populate the list
             for (int i = 0; i < coll.count(); i++) {
-                pos = i + 1;
+                //pos = i + 1;
 
                 Document doc = cursor.next();
+                id_ = doc.getObjectId("_id").toString();
                 date_ = doc.getString("date");
                 starting = doc.getString("Starting_Time");
                 landing = doc.getString("Landing_Time");
@@ -284,7 +268,7 @@ public class FlightList implements Initializable {
                 height = doc.getString("max_height");
                 speed = doc.getString("max_speed");
 
-                flight.add(new Flights(pos, is_flying, starting, landing, date_, height, speed));
+                flight.add(new Flights(id_, pos,is_flying, starting, landing, date_, height, speed));
             }
             list = FXCollections.observableArrayList(flight);
 

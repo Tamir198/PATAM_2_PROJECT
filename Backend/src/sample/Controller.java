@@ -1,6 +1,7 @@
 package sample;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.collections.FXCollections;
@@ -22,8 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
-    private final static String HOST = "localhost";
-    private final static int PORT = 27017;
+    private final static MongoClientURI mongoClientURI = new MongoClientURI("mongodb+srv://Admin:QAVvsM8ag0DVny7R@cluster0.oc8hw.mongodb.net/?authMechanism=SCRAM-SHA-1&authSource=admin");
     @FXML
     private TextField date;
     @FXML
@@ -56,10 +56,11 @@ public class Controller implements Initializable{
     public void getFieldValues(ActionEvent event){
         try{
 //          create a connection to mongodb server
-            MongoClient mongoClient = new MongoClient(HOST, PORT);
+            //MongoClient mongoClient = new MongoClient(HOST, PORT);
+            MongoClient mongoClient = new MongoClient(mongoClientURI);
 
 //          create a database name
-            MongoDatabase mongoDatabase = mongoClient.getDatabase("Confab");
+            MongoDatabase mongoDatabase = mongoClient.getDatabase("FlightDB");
 
 //          create a collection
             MongoCollection coll = mongoDatabase.getCollection("FlightList");
@@ -69,15 +70,15 @@ public class Controller implements Initializable{
                     .append("Starting_Time", starting_time.getText())
                     .append("Landing_Time", landing_time.getText())
                     .append("Currently_Flying", currently_flying.getValue())
-                    .append("max_speed", max_speed.getText())
-                    .append("max_height", max_height.getText());
+                    .append("max_height", max_height.getText() + "ft")
+                    .append("max_speed", max_speed.getText() + "mph");
 
 
 //          save the document
             coll.insertOne(doc);
 
 //          display a success message
-            status.setText("nishmar sababaaaaa!");
+            status.setText("saved successfully!");
 
 //          set the fields to null or empty
             date.setText("");
@@ -90,7 +91,7 @@ public class Controller implements Initializable{
         catch (Exception e){
             System.out.println(e.getClass().getName() + ": " + e.getMessage());
 //          display the error message
-            status.setText("lo nishmar cosemec");
+            status.setText("data was not saved");
         }
     }
 
@@ -104,10 +105,7 @@ public class Controller implements Initializable{
 //      load the attendance list window
         Parent root = FXMLLoader.load(getClass().getResource("FlightList.fxml"));
         primaryStage.setTitle("Flight List");
-        primaryStage.setScene(new Scene(root, 747, 400));
+        primaryStage.setScene(new Scene(root, 772, 400));
         primaryStage.show();
-
     }
-
-
 }

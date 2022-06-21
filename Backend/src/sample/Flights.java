@@ -1,10 +1,10 @@
 package sample;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Flights {
-    private final SimpleIntegerProperty Flight_id;
+    private Integer Index;
+    private final SimpleStringProperty Flight_id;
     private final SimpleStringProperty Currently_Flying;
     private final SimpleStringProperty Starting_Time;
     private final SimpleStringProperty Landing_Time;
@@ -12,8 +12,17 @@ public class Flights {
     private final SimpleStringProperty max_height;
     private final SimpleStringProperty max_speed;
 
-    public Flights(Integer Flight_id, String Currently_Flying, String Starting_Time, String Landing_Time, String date, String max_height, String max_speed) {
-        this.Flight_id = new SimpleIntegerProperty(Flight_id);
+    public Integer getIndex() {
+        return Index;
+    }
+
+    public void setIndex(Integer index){
+        this.Index = index;
+    }
+
+    public Flights(String Flight_id, Integer Index, String Currently_Flying, String Starting_Time, String Landing_Time, String date, String max_height, String max_speed) {
+        this.Flight_id = new SimpleStringProperty(Flight_id);
+        this.Index = Index;
         this.Currently_Flying = new SimpleStringProperty(Currently_Flying);
         this.Starting_Time = new SimpleStringProperty(Starting_Time);
         this.Landing_Time = new SimpleStringProperty(Landing_Time);
@@ -22,15 +31,12 @@ public class Flights {
         this.max_speed=new SimpleStringProperty(max_speed);
     }
 
-    public int getFlight_id() {
+
+    public String getFlight_id() {
         return Flight_id.get();
     }
 
-    public SimpleIntegerProperty flight_idProperty() {
-        return Flight_id;
-    }
-
-    public void setFlight_id(int flight_id) {
+    public void setFlight_id(String flight_id) {
         this.Flight_id.set(flight_id);
     }
 
