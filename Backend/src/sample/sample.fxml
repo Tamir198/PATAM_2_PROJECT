@@ -29,6 +29,11 @@
                   <Font size="14.0" />
                </font>
             </TextField>
+            <TextField fx:id="landing_time" alignment="CENTER" promptText="Landing Time">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
             <ComboBox fx:id="currently_flying" prefHeight="25.0" prefWidth="173.0" promptText="Currently Flying" />
             <TextField fx:id="max_height" alignment="CENTER" promptText="Max Height">
                <font>
@@ -40,14 +45,9 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="landing_time" alignment="CENTER" promptText="Landing Time">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="3.0" layoutY="296.0" prefHeight="40.0" prefWidth="331.0" spacing="10.0">
+      <HBox alignment="CENTER" layoutY="295.0" prefHeight="40.0" prefWidth="331.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="94.0" text="Add CSV" />
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#getFieldValues" prefHeight="40.0" prefWidth="94.0" text="Add Flight" textAlignment="CENTER">
