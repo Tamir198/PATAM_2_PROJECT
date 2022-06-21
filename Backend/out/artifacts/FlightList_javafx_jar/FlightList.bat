@@ -1,1 +1,0 @@
-C:\Users\user\.jdks\corretto-1.8.0_322\bin\java.exe -Dfile.encoding=windows-1255 -jar C:\Users\user\Documents\GitHub\PATAM_2_PROJECT\Backend\out\artifacts\FlightList_javafx_jar\FlightList_javafx.jar

@@ -1,4 +1,4 @@
-package sample;
+package view;
 
 
 import com.mongodb.MongoClient;
@@ -82,7 +82,6 @@ public class FlightList implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        table.setEditable(true);
 
         try {
             for (int i = 0; i < coll.count(); i++) {
@@ -149,8 +148,6 @@ public class FlightList implements Initializable {
     }
 
     public void setTable() {
-//      this makes the table editable
-        table.setEditable(true);
 
         /*id.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -178,9 +175,6 @@ public class FlightList implements Initializable {
             }
         });
 
-        //      make starting_time column editable with a text-field
-        starting_time.setCellFactory(TextFieldTableCell.forTableColumn());
-
 //      gets the new value and calls the setStarting_Time method
         starting_time.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
@@ -190,9 +184,6 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make landing_time column editable with a text-field
-        landing_time.setCellFactory(TextFieldTableCell.forTableColumn());
-
 //      gets the new value and calls the setLanding_Time method
         landing_time.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
@@ -201,9 +192,6 @@ public class FlightList implements Initializable {
                         .setLanding_Time(event.getNewValue());
             }
         });
-
-//      make currently_flying column editable with a text-field
-        currently_flying.setCellFactory(TextFieldTableCell.forTableColumn());
 
 //      gets the new value and calls the setCurrently_Flying method
         currently_flying.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
@@ -216,8 +204,6 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make max_height column editable with a text-field
-        max_height.setCellFactory(TextFieldTableCell.forTableColumn());
 //      gets the new value and calls the setMax_height method
         max_height.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override
@@ -227,8 +213,6 @@ public class FlightList implements Initializable {
             }
         });
 
-//      make max_speed column editable with a text-field
-        max_speed.setCellFactory(TextFieldTableCell.forTableColumn());
 //      gets the new value and calls the setMax_speed method
         max_speed.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Flights, String>>() {
             @Override

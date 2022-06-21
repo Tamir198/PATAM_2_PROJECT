@@ -1,4 +1,4 @@
-package sample;
+package view;
 
 import TimeSeries.TimeSeries;
 import com.mongodb.MongoClient;
@@ -25,7 +25,6 @@ import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -125,7 +124,11 @@ public class Controller implements Initializable{
         final FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("choose CSV file");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV","*.csv"));
-        fileChooser.setInitialDirectory(new File("src/resources"));
+        File flightDir = new File("resources");
+        if (! flightDir.exists()) {
+            flightDir.mkdirs();
+        }
+        fileChooser.setInitialDirectory(flightDir);
         File chosen=fileChooser.showOpenDialog(null);
         if(chosen!=null) {
             TimeSeries ts=new TimeSeries(chosen.getAbsolutePath());
@@ -161,14 +164,6 @@ public class Controller implements Initializable{
 
 //          display a success message
                 status.setText("saved successfully!");
-
-//          set the fields to null or empty
-//                date.setText("");
-//                starting_time.setText("");
-//                landing_time.setText("");
-//                currently_flying.setValue(null);
-//                max_height.setText("");
-//                max_speed.setText("");
             }
             catch (Exception e){
                 System.out.println(e.getClass().getName() + ": " + e.getMessage());

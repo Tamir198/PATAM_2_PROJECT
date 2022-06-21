@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Flight" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FlightList">
+<AnchorPane fx:id="Flight" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FlightList">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="779.0">
          <children>
@@ -23,13 +23,13 @@
                <children>
                   <TableView fx:id="table" prefHeight="262.0" prefWidth="789.0">
                     <columns>
-                      <TableColumn fx:id="id" editable="false" prefWidth="115.20001375675201" text="Flight Id" />
-                        <TableColumn fx:id="date" editable="true" prefWidth="109.5999984741211" text="Flight Date" />
-                        <TableColumn fx:id="starting_time" editable="true" prefWidth="103.20001220703125" text="Start time" />
+                      <TableColumn fx:id="id" prefWidth="115.20001375675201" text="Flight Id" />
+                        <TableColumn fx:id="date" prefWidth="109.5999984741211" text="Flight Date" />
+                        <TableColumn fx:id="starting_time" prefWidth="103.20001220703125" text="Start time" />
                         <TableColumn fx:id="landing_time" prefWidth="98.4000244140625" text="Land time" />
-                      <TableColumn fx:id="currently_flying" editable="true" minWidth="50.0" prefWidth="96.80001831054688" text="Airborne" />
-                        <TableColumn fx:id="max_height" editable="true" prefWidth="124.800048828125" text="Max Height" />
-                        <TableColumn fx:id="max_speed" editable="true" prefWidth="118.4000244140625" text="Max Speed" />
+                      <TableColumn fx:id="currently_flying" minWidth="50.0" prefWidth="96.80001831054688" text="Airborne" />
+                        <TableColumn fx:id="max_height" prefWidth="124.800048828125" text="Max Height" />
+                        <TableColumn fx:id="max_speed" prefWidth="118.4000244140625" text="Max Speed" />
       
                     </columns>
                   </TableView>
