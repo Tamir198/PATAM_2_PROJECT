@@ -14,7 +14,6 @@ public class Hybrid implements TimeSeriesAnomalyDetector {
 
     //setters&getters
 
-
     public void setHybridMap(Map<String, Circle> hybridMap) {
         this.hybridMap = hybridMap;
     }
@@ -103,13 +102,6 @@ public class Hybrid implements TimeSeriesAnomalyDetector {
                 if(tempReports.size() != 0) {
                     anomalyReports.addAll(tempReports);
                 }
-                /*for(int i=0;i<featuresList1.size();i++){
-                    points.add(new Point(featuresList1.get(i),featuresList2.get(i)));
-                    tempReports.add(new AnomalyReport(description,i + 1));
-                }
-
-                Line line = StatLib.linear_reg(toPointArray(points));
-                if(line )*/
 
             } else if(zScoreDetect.containsKey(description)){
                 String[] tokens = description.split("-");
@@ -128,6 +120,7 @@ public class Hybrid implements TimeSeriesAnomalyDetector {
         }
         return pointsArray;
     }
+
     // Creates a points array from two float arrays
     private static Point[] FloatArraytoPointArray(float[] x, float[] y) {
         Point[] points = new Point[x.length];

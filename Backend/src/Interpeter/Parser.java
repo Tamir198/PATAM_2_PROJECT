@@ -18,7 +18,8 @@ public class Parser {
 	private final ExpressionFactory expsFactory;
 	private final CommandFactory cmdsFactory;
 	private final Map<String, Token> symbolTable;
-	public Parser(Lexer lexer, ExpressionFactory expsFactory, CommandFactory cmdsFactory, Map<String, Token> symbolTable) {
+	public Parser(Lexer lexer, ExpressionFactory expsFactory, CommandFactory cmdsFactory,
+				  Map<String, Token> symbolTable) {
 		this.lexer = lexer;
 		this.expsFactory = expsFactory;
 		this.cmdsFactory = cmdsFactory;
@@ -104,7 +105,8 @@ public class Parser {
 			if (expsFactory.isExpressionExists(tokenStr)) {
 				// We support only binary expressions.
 				if(cmds.size() < 2)
-					throw new Exception("Expression " + tokenStr + " expected 2 arguments" + ", recived " + cmds.size());
+					throw new Exception("Expression " + tokenStr + " expected 2 arguments" + ", recived "
+										+ cmds.size());
 				
 				Command left = symbolResolv(cmds.pop());
 				Command right = symbolResolv(cmds.pop());
@@ -118,12 +120,10 @@ public class Parser {
 			// Probably it is just a constant value (String / Double)
 			Command cmd = new ConstantValue(token);
 			validateAndPushCommand(cmds, cmd);
-		
 		}
 
 		if(cmds.size() != 1)
 			throw new Exception("Invalid syntax");
 		return cmds.pop();
 	}
-
 }

@@ -5,6 +5,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.bson.Document;
@@ -29,7 +32,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
-    private final static MongoClientURI mongoClientURI = new MongoClientURI("mongodb+srv://Admin:QAVvsM8ag0DVny7R@cluster0.oc8hw.mongodb.net/?authMechanism=SCRAM-SHA-1&authSource=admin");
+    private final static MongoClientURI mongoClientURI =
+            new MongoClientURI("mongodb+srv://Admin:QAVvsM8ag0DVny7R@cluster0.oc8hw.mongodb.net" +
+                               "/?authMechanism=SCRAM-SHA-1&authSource=admin");
     @FXML
     private TextField date;
     @FXML
@@ -47,35 +52,42 @@ public class Controller implements Initializable{
     @FXML
     private Button att;
     @FXML
-    private Button csv;
+    private VBox vbox;
 
-
-
-//  create an observable list to hold the content of the combobox
+    // create an observable list to hold the content of the combobox
     ObservableList<String> list  = FXCollections.observableArrayList("true", "false");
 
-//  create a primary stage object
+    // create a primary stage object
     Stage primaryStage = new Stage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//      set the items of the combobox
+
+        // changes the focus from the first text field to the parent
+        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
+        date.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
+            if(newValue && firstTime.get()){
+                vbox.requestFocus(); // Delegate the focus to container
+                firstTime.setValue(false); // Variable value changed for future references
+            }
+        });
+
+        // set the items of the combobox
         currently_flying.setItems(list);
     }
 
     public void getFieldValues(ActionEvent event){
         try{
-//          create a connection to mongodb server
-            //MongoClient mongoClient = new MongoClient(HOST, PORT);
+            // create a connection to mongodb server
             MongoClient mongoClient = new MongoClient(mongoClientURI);
 
-//          create a database name
+            // get a database or create one if it does not exist
             MongoDatabase mongoDatabase = mongoClient.getDatabase("FlightDB");
 
-//          create a collection
+            // get a collection or create one if it does not exist
             MongoCollection coll = mongoDatabase.getCollection("FlightList");
 
-//          get the values of the fields
+            // get the values of the fields
             Document doc = new Document("date", date.getText())
                     .append("Starting_Time", starting_time.getText())
                     .append("Landing_Time", landing_time.getText())
@@ -83,13 +95,13 @@ public class Controller implements Initializable{
                     .append("max_height", max_height.getText() + "ft")
                     .append("max_speed", max_speed.getText() + "kt");
 
-//          save the document
+            // save the document
             coll.insertOne(doc);
 
-//          display a success message
+            // display a success message
             status.setText("saved successfully!");
 
-//          set the fields to null or empty
+            // set the fields to null or empty
             date.setText("");
             starting_time.setText("");
             landing_time.setText("");
@@ -99,19 +111,20 @@ public class Controller implements Initializable{
         }
         catch (Exception e){
             System.out.println(e.getClass().getName() + ": " + e.getMessage());
-//          display the error message
+
+            // display the error message
             status.setText("data was not saved");
         }
     }
 
     public void goToFlightList() throws Exception{
-//      get the current window
+        // get the current window
         Stage stage = (Stage)att.getScene().getWindow();
 
-//      close the current window
+        // close the current window
         stage.close();
 
-//      load the attendance list window
+        // load the flight list window
         Parent root = FXMLLoader.load(getClass().getResource("FlightList.fxml"));
         primaryStage.setTitle("Flight List");
         primaryStage.setScene(new Scene(root, 772, 400));
@@ -119,17 +132,22 @@ public class Controller implements Initializable{
     }
 
     public void getFlightFromCsv(ActionEvent actionEvent) {
-
-
+        // file chooser for a csv file
         final FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("choose CSV file");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV","*.csv"));
+
+        // gets a resource folder
         File flightDir = new File("resources");
+
+        // creates a resource folder if it does not exist
         if (! flightDir.exists()) {
             flightDir.mkdirs();
         }
+
         fileChooser.setInitialDirectory(flightDir);
         File chosen=fileChooser.showOpenDialog(null);
+
         if(chosen!=null) {
             TimeSeries ts=new TimeSeries(chosen.getAbsolutePath());
             ArrayList<Float> speedArr = ts.getHashTimeSeries().get("airspeed-kt");
@@ -137,21 +155,21 @@ public class Controller implements Initializable{
             float maxSpeed = speedArr.stream().max(Float::compare).get();
             float maxHeight = heightArr.stream().max(Float::compare).get();
             try{
-//          create a connection to mongodb server
-
+                // create a mongodb connection
                 MongoClient mongoClient = new MongoClient(mongoClientURI);
 
-//          create a database name
+                // get a database or create one if it does not exist
                 MongoDatabase mongoDatabase = mongoClient.getDatabase("FlightDB");
 
-//          create a collection
+                // get a collection or create one if it does not exist
                 MongoCollection coll = mongoDatabase.getCollection("FlightList");
 
+                // get uploaded file date
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
                 ArrayList<String>current_time=ts.getCurrentTime();
 
-//          get the values of the fields
+                // get the values of the fields
                 Document doc = new Document("date", formatter.format(date))
                         .append("Starting_Time", current_time.get(0))
                         .append("Landing_Time", current_time.get(current_time.size()-1))
@@ -159,18 +177,17 @@ public class Controller implements Initializable{
                         .append("max_height",maxHeight + "ft")
                         .append("max_speed", maxSpeed + "kt");
 
-//          save the document
+                //save the document
                 coll.insertOne(doc);
 
-//          display a success message
+                // display a success message
                 status.setText("saved successfully!");
             }
             catch (Exception e){
                 System.out.println(e.getClass().getName() + ": " + e.getMessage());
-//          display the error message
+                // display the error message
                 status.setText("data was not saved");
             }
         }
-
     }
 }

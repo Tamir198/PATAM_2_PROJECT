@@ -40,5 +40,4 @@ public class VarCommand extends Command {
 		
 		this.execute();
 	}
-
 }

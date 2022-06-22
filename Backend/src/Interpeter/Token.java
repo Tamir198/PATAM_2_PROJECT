@@ -42,5 +42,4 @@ public class Token {
 	public String toString() {
 		return value != null ? value.toString() : "null";
 	}
-	
 }

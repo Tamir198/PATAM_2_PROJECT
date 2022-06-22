@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
-//  create a window
+    // show the primary stage
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("AddFlight.fxml"));
         primaryStage.setTitle("Add Flight");
@@ -18,7 +18,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
         launch(args);
     }
 }

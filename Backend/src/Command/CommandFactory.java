@@ -58,5 +58,4 @@ public class CommandFactory {
 	public Command wrapExpression(Expression exp) {
 		return new ExpressionAsCommand(exp);
 	}
-	
 }

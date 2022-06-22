@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.*;
 
 public class Circle {
-    //data members
+    // data members
     private Circle circle;
     public Point center;
     public float radius;
     private static final double MULTIPLICATIVE_EPSILON = 1 + 1e-14;
-//ctors&functions
+
+    // ctors&functions
     public Circle(List<Point> points){
         this.circle = makeCircle(points);
     }
@@ -80,6 +81,7 @@ public class Circle {
         }
         return true;
     }
+
     // One boundary point known
     private static Circle makeCircleOnePoint(List<Point> points, Point p) {
         Circle c = new Circle(p, 0);
@@ -94,6 +96,7 @@ public class Circle {
         }
         return c;
     }
+
     // Two boundary points known
     private static Circle makeCircleTwoPoints(List<Point> points, Point p, Point q) {
         Circle circ = makeDiameter(p, q);

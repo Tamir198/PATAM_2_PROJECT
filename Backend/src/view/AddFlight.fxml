@@ -12,7 +12,7 @@
 
 <Pane prefHeight="364.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
    <children>
-      <VBox alignment="CENTER" layoutX="81.0" prefHeight="282.0" prefWidth="174.0" spacing="10.0">
+      <VBox fx:id="vbox" alignment="CENTER" layoutX="81.0" prefHeight="282.0" prefWidth="174.0" spacing="10.0">
          <children>
             <Label fx:id="status" alignment="CENTER" prefHeight="2.0" prefWidth="184.0" textAlignment="CENTER" textFill="#eb2020">
                <font>

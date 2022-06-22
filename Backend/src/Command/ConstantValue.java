@@ -17,5 +17,4 @@ public class ConstantValue extends Command{
 
 	@Override
 	public void validate() throws Exception {}
-
 }

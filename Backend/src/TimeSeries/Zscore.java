@@ -39,7 +39,6 @@ public class Zscore implements TimeSeriesAnomalyDetector {
 
             this.maxZscore.add(maximum);
         }
-
     }
     private float[] ArrayListToArray(ArrayList<Float> list) {
         float[] fArray = new float[list.size()];

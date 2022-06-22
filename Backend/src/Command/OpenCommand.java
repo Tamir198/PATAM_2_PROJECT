@@ -36,5 +36,4 @@ public class OpenCommand extends Command {
 			throw new Exception("Invalid ip value for Open command  " + ip + ". " + e.getMessage());
 		}
 	}
-
 }

@@ -26,5 +26,4 @@ public class ExpressionAsCommand extends Command {
 			throw new Exception("Given Expression is invalid");
 		}
 	}
-
 }

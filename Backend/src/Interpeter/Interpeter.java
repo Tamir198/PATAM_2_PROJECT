@@ -19,9 +19,7 @@ public class Interpeter {
 	}
 	
 	public static Queue<Command> getCommands(File code) throws Exception {
-		/*
-		 * We assume each line is a command. each token separate by whitespace
-		 */
+		// We assume each line is a command. each token separate by whitespace
 		Map<String, Token> symbolTable = new HashMap<>();
 		Parser p = new Parser(new Lexer(), new ExpressionFactory(), new CommandFactory(symbolTable), symbolTable);
 		Scanner in = new Scanner(code);
@@ -45,8 +43,6 @@ public class Interpeter {
 		in.close();
 		
 		return cmds;
-		
-		
 	}
 	
 	public static void main(String[] args) {

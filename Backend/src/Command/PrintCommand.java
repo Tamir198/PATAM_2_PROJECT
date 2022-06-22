@@ -23,5 +23,4 @@ public class PrintCommand extends Command {
 
 	@Override
 	public void validate() throws Exception {}
-
 }

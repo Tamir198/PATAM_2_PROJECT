@@ -6,7 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42d4aa86-f73b-484a-bc22-0359479a52b9" name="Changes" comment="" />
+    <list default="true" id="42d4aa86-f73b-484a-bc22-0359479a52b9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/PATAM_2_PROJECT.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/vcs.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +75,7 @@
       <recent name="C:\Users\Almog\OneDrive\Documents\GitHub\Backend\src\sample" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.FlightList.jar">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Interpeter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Interpeter.Interpeter" />
       <module name="FlightList" />
@@ -106,8 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.FlightList.jar" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JAR Application.FlightList.jar" />
         <item itemvalue="JAR Application.FlightList_javafx.jar" />
         <item itemvalue="Application.Interpeter" />
       </list>
