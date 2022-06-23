@@ -34,7 +34,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <ComboBox fx:id="currently_flying" prefHeight="25.0" prefWidth="173.0" promptText="Currently Flying" />
+            <ComboBox fx:id="currently_flying" prefWidth="174.0" promptText="Currently Flying" />
             <TextField fx:id="max_height" alignment="CENTER" promptText="Max Height">
                <font>
                   <Font size="14.0" />

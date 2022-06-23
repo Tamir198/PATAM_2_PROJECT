@@ -6,13 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42d4aa86-f73b-484a-bc22-0359479a52b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/PATAM_2_PROJECT.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PATAM_2_PROJECT/.idea/vcs.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="42d4aa86-f73b-484a-bc22-0359479a52b9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
