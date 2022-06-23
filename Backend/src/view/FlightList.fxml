@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="Flight" prefHeight="400.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FlightList">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="779.0">
+         <children>
+            <Label fx:id="status" alignment="CENTER" prefHeight="21.0" prefWidth="702.0" textAlignment="CENTER" textFill="#dd1313">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox prefWidth="779.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="262.0" prefWidth="789.0">
+                    <columns>
+                      <TableColumn fx:id="id" prefWidth="115.20001375675201" text="Flight Id" />
+                        <TableColumn fx:id="date" prefWidth="109.5999984741211" text="Flight Date" />
+                        <TableColumn fx:id="starting_time" prefWidth="103.20001220703125" text="Start time" />
+                        <TableColumn fx:id="landing_time" prefWidth="98.4000244140625" text="Land time" />
+                      <TableColumn fx:id="currently_flying" minWidth="50.0" prefWidth="96.80001831054688" text="Airborne" />
+                        <TableColumn fx:id="max_height" prefWidth="124.800048828125" text="Max Height" />
+                        <TableColumn fx:id="max_speed" prefWidth="118.4000244140625" text="Max Speed" />
+      
+                    </columns>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                   <Button fx:id="addFlight" mnemonicParsing="false" onAction="#addFlight" text="Add Flight" textAlignment="CENTER">
+                       <font>
+                           <Font size="18.0" />
+                       </font>
+                       <padding>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                       </padding>
+                   </Button>
+                   <Button mnemonicParsing="false" onAction="#deleteFlight" text="Delete Flight" textAlignment="CENTER">
+                       <font>
+                           <Font size="18.0" />
+                       </font>
+                       <padding>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                       </padding>
+                   </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
