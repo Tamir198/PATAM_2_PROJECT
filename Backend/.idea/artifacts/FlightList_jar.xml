@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FlightList:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FlightList_jar</output-path>
+    <root id="archive" name="FlightList.jar">
+      <element id="module-output" name="FlightList" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/mongo-java-driver-3.12.11.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
